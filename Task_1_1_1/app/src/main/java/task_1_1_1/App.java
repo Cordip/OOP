@@ -11,8 +11,26 @@ import task_1_1_1.HeapSort;
 import task_1_1_1.Receiver;
 import task_1_1_1.Print;
 
-public class App {
 
+
+/**
+ * main class of this application
+ * @author Maxim Gavrilev
+ * 
+ * 
+ */
+public class App {
+    /**
+     * useless because all is static here
+     */
+    public App() {
+
+    }
+
+    /**
+     * main function, programm starts here
+     * @param args not used
+     */
     public static void main(String[] args) {
         Receiver receiver = new Receiver();
         int length = receiver.collectLengthForArrayFromCmd();
