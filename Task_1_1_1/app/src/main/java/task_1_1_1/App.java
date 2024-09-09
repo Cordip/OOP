@@ -1,7 +1,7 @@
-/** 
- * programm for sorting array of ints with heap sort.
- * @autor Maxim Gavrilev
- * @version 1.0
+/**
+ *programm for sorting array of ints with heap sort.
+ *@autor Maxim Gavrilev
+ *@version 1.0
 */
 
  
@@ -14,20 +14,20 @@ import task_1_1_1.Print;
 
 
 /**
- * main class of this application.
- * @author Maxim Gavrilev
+ *main class of this application.
+ *@author Maxim Gavrilev.
  */
 public class App {
     /**
-     * useless because all is static here.
+     *useless because all is static here.
      */
     public App() {
 
     }
 
     /**
-     * main function, programm starts here.
-     * @param args not used
+     *main function, programm starts here.
+     *@param args not used.
      */
     public static void main(String[] args) {
         Receiver receiver = new Receiver();
