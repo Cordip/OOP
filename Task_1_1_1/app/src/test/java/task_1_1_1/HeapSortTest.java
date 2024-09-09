@@ -48,6 +48,19 @@ class HeapSortTest {
         assertArrayEquals(clone_array, arr, "app can sort very big array");
     }
 
+    @Test void veryBigAlreadySortedArray() {
+        int right = 10000000;
+        int cnt = 0;
+        int [] arr = new int[right*2+100];
+        for (int i = -right; i < right; ++i) {
+            arr[cnt++] = i;
+        }
+        int [] clone_array = arr.clone();
+        HeapSort.sort(arr);
+        Arrays.sort(clone_array);
+        assertArrayEquals(clone_array, arr, "app can sort very big already sorted array");
+    }
+
     @Test void emptyArray() {
         int [] arr = new int[0];
         HeapSort.sort(arr);
@@ -60,7 +73,7 @@ class HeapSortTest {
         assertArrayEquals(new int [] {666}, arr, "app can sort one element array");
     }
 
-    @RepeatedTest(100) void randomArrays() {
+    @RepeatedTest(100) void randomMediumArrays() {
         Random rnd = new Random();
 
         int length = rnd.nextInt(10000);
@@ -74,7 +87,26 @@ class HeapSortTest {
         int [] clone_arr = arr.clone();
         HeapSort.sort(arr);
         Arrays.sort(clone_arr);
-        assertArrayEquals(clone_arr, arr, "app can sort random arrays");
+        assertArrayEquals(clone_arr, arr, "app can sort random medium arrays");
+        
+
+    }
+
+    @RepeatedTest(1000) void randomSmallArrays() {
+        Random rnd = new Random();
+
+        int length = rnd.nextInt(100);
+
+        int [] arr = new int[length];
+        
+        for (int i = 0; i < length; ++i) {
+            arr[i] = rnd.nextInt(1000000) - 5000000;
+        }
+
+        int [] clone_arr = arr.clone();
+        HeapSort.sort(arr);
+        Arrays.sort(clone_arr);
+        assertArrayEquals(clone_arr, arr, "app can sort random small arrays");
         
 
     }
