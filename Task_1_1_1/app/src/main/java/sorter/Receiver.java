@@ -1,4 +1,4 @@
-package task_1_1_1;
+package sorter;
 
 import java.util.Scanner;
 

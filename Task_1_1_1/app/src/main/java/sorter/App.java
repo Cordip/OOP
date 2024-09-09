@@ -5,11 +5,11 @@
 */
 
  
-package task_1_1_1;
+package sorter;
 
-import task_1_1_1.HeapSort;
-import task_1_1_1.Receiver;
-import task_1_1_1.Print;
+import sorter.HeapSort;
+import sorter.Print;
+import sorter.Receiver;
 
 
 

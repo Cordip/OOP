@@ -1,6 +1,6 @@
-package task_1_1_1;
+package sorter;
 
-import task_1_1_1.Swap;
+import sorter.Swap;
 
 /**
  *class of all heap sort functions.
