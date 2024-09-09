@@ -3,11 +3,11 @@ package task_1_1_1;
 import task_1_1_1.Swap;
 
 /**
- * class of all heap sort functions
+ * class of all heap sort functions.
  */
 public class HeapSort {
     /**
-     * useless because all is static here
+     * useless because all is static here.
      */
     public HeapSort () {
 
@@ -25,7 +25,7 @@ public class HeapSort {
      *    6
      *   / \
      *  2   0
-     * 
+     * .
      * @param arr array of ints
      * @param length length of given array (length <= arr.length)
      * @param id  position of root in array
@@ -49,12 +49,12 @@ public class HeapSort {
         }
     }
     /**
-     * where heap sort is located
-     * in first cycle we build max heap
-     * then in cycle swap root with the last element
-     * make length - 1
-     * and build max heap again
-     * until array is finally sorted
+     * where heap sort is located.
+     * in first cycle we build max heap.
+     * then in cycle swap root with the last element.
+     * make length - 1.
+     * and build max heap again.
+     * until array is finally sorted.
      * @param arr array of ints
      */
     public static void sort(int [] arr) {

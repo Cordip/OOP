@@ -14,21 +14,19 @@ import task_1_1_1.Print;
 
 
 /**
- * main class of this application
+ * main class of this application.
  * @author Maxim Gavrilev
- * 
- * 
  */
 public class App {
     /**
-     * useless because all is static here
+     * useless because all is static here.
      */
     public App() {
 
     }
 
     /**
-     * main function, programm starts here
+     * main function, programm starts here.
      * @param args not used
      */
     public static void main(String[] args) {
