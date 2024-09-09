@@ -7,7 +7,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    java
 }
 
 repositories {
@@ -31,10 +31,16 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-
+/* 
 application {
     // Define the main class for the application.
-    mainClass = "task_1_1_1.App"
+    mainClass = "org.example.App"
+}
+*/
+tasks.named<Jar>("jar") {
+    manifest {
+        attributes["Main-Class"] = "task_1_1_1.App"
+    }
 }
 
 tasks.named<Test>("test") {
