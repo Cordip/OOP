@@ -7,21 +7,15 @@ import java.util.Scanner;
  */
 public class Receiver {
     /**
-     *needs allocation to work.
-     */
-    public Receiver () {
-
-    }
-    /**
      *scanner here for optimisation.
      */
-    private Scanner scannerIn = new Scanner(System.in);
+    private static Scanner scannerIn = new Scanner(System.in);
 
     /**
      *function that collects int (length of future array).
      *@return length of array.
      */
-    public int collectLengthForArrayFromCmd() {
+    public static int collectLengthForArrayFromCmd() {
         int length = -1;
         System.out.println("Write length of the array");
         while(length == -1) {
@@ -42,7 +36,7 @@ public class Receiver {
      *@param length max elements in array.
      *@return some array with his length = length.
      */
-    public int[] collectArrayFromCmd(int length) {
+    public static int[] collectArrayFromCmd(int length) {
         int[] arr = new int[length];
         System.out.println("Write array of integers");
         for (int i = 0; i < length; ++i) {

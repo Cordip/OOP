@@ -7,8 +7,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    java
-    jacoco
+    id 'java'
+    id 'jacoco'
 }
 
 repositories {
@@ -18,12 +18,12 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
+    testImplementation libs.junit.jupiter
 
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     // This dependency is used by the application.
-    implementation(libs.guava)
+    implementation libs.guava
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -32,23 +32,16 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-/* 
-application {
-    // Define the main class for the application.
-    mainClass = "org.example.App"
-}
-*/
-tasks.named<Jar>("jar") {
-    manifest {
-        attributes["Main-Class"] = "task_1_1_1.App"
-    }
-}
 
-tasks.named<Test>("test") {
+tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
-
+tasks.named("jar") {
+    manifest {
+        attributes["Main-Class"] = "sorter.App"
+    }
+}
 tasks.jacocoTestReport {
     reports {
         xml.required = true

@@ -7,12 +7,6 @@ import java.time.Instant;
  */
 public class Timer {
     /**
-     *needs allocation to work.
-     */
-    public Timer () {
-
-    }
-    /**
      *start of timer.
      */
     private Instant start;

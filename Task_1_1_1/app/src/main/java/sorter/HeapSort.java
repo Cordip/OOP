@@ -7,10 +7,28 @@ import sorter.Swap;
  */
 public class HeapSort {
     /**
-     *useless because all is static here.
+     *where heap sort is located
+     *in first cycle we build max heap
+     *then in cycle swap root with the last element
+     *make length - 1
+     *and build max heap again
+     *until array is finally sorted.
+     *@param arr array of ints.
      */
-    public HeapSort () {
+    public static void sort(int [] arr) {
+        System.out.println("sorting in process...");
+        int length = arr.length;
+        
+        for (int i = length / 2 - 1; i >= 0; --i) {
+            heapify(arr, length, i);
+        }
 
+        for (int i = length - 1; i > 0; --i) {
+            Swap.swapArrayInts(arr, i, 0);
+
+            heapify(arr, i, 0);
+        }
+        System.out.println("array is sorted");
     }
     /**
      *its sift up
@@ -48,28 +66,5 @@ public class HeapSort {
             heapify(arr, length, large);
         }
     }
-    /**
-     *where heap sort is located
-     *in first cycle we build max heap
-     *then in cycle swap root with the last element
-     *make length - 1
-     *and build max heap again
-     *until array is finally sorted.
-     *@param arr array of ints.
-     */
-    public static void sort(int [] arr) {
-        System.out.println("sorting in process...");
-        int length = arr.length;
-        
-        for (int i = length / 2 - 1; i >= 0; --i) {
-            heapify(arr, length, i);
-        }
-
-        for (int i = length - 1; i > 0; --i) {
-            Swap.swapArrayInts(arr, i, 0);
-
-            heapify(arr, i, 0);
-        }
-        System.out.println("array is sorted");
-    }
+    
 }

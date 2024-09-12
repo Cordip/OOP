@@ -5,6 +5,7 @@ package sorter;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.math.*;
 
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,13 @@ class HeapSortTest {
             arr[cnt++] = i;
         }
         int [] clone_array = arr.clone();
+        Timer timer = new Timer();
+        timer.startTimer();
         HeapSort.sort(arr);
+        timer.stopTimer();
+        System.out.println("elements: " + right*2);
+        timer.printTimer();
+
         Arrays.sort(clone_array);
         assertArrayEquals(clone_array, arr, "app can sort big array");
     }
@@ -44,7 +51,13 @@ class HeapSortTest {
             arr[cnt++] = i;
         }
         int [] clone_array = arr.clone();
+        Timer timer = new Timer();
+        timer.startTimer();
         HeapSort.sort(arr);
+        timer.stopTimer();
+        System.out.println("elements: " + right*2);
+        timer.printTimer();
+        
         Arrays.sort(clone_array);
         assertArrayEquals(clone_array, arr, "app can sort very big array");
     }
