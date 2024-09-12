@@ -21,6 +21,7 @@ public class App {
 
     /**
      *main function, programm starts here.
+     *
      *@param args not used.
      */
     public static void main(String[] args) {
