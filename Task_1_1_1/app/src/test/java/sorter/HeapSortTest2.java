@@ -19,7 +19,7 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 public class HeapSortTest2 {
-    @Test void randomRiseTenArraysWithTimeCalculation() {
+    @Test void randomRiseByTenArraysWithTimeCalculation() {
         int right = 1;
         int cnt = 0;
         Random rnd = new Random();
