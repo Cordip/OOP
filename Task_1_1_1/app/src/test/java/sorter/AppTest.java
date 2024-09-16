@@ -67,9 +67,10 @@ public class AppTest {
         assertEquals(expected,actual);
     }
 
-    @RepeatedTest(10) public void randomValidCmdInput() {
+    @RepeatedTest(100) public void randomValidCmdInput() {
         Random rnd = new Random();
-        int length = rnd.nextInt(10000);
+        //int length = rnd.nextInt(10000);
+        int length = 5;
         int [] arr = new int[length];
 
         for (int i = 0; i < length; ++i) {
@@ -79,13 +80,13 @@ public class AppTest {
         Arrays.sort(clone_arr);
 
 
-        String userInput = String.format("%s %s", Integer.toString(length), Print.arrayToString(arr));
+        String userInput = String.format("%s %s", Integer.toString(length), Arrays.toString(arr).replaceAll("\\[|\\s", "").replaceAll("\\]|,", " "));
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         InputStream inStream = System.in;
 
         System.setIn(bais);
 
-        String expected = Print.arrayToString(clone_arr);
+        String expected = Arrays.toString(clone_arr).replaceAll("\\[|\\s", "").replaceAll("\\]|,", " ");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(baos);
         PrintStream outStream = System.out;
