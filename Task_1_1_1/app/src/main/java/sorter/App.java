@@ -12,7 +12,6 @@ import sorter.Print;
 import sorter.Receiver;
 
 
-
 /**
  *main class of this application.
  *@author Maxim Gavrilev.
@@ -25,17 +24,18 @@ public class App {
      *@param args not used.
      */
     public static void main(String[] args) {
-        //Receiver receiver = new Receiver();
-        int length = Receiver.collectLengthForArrayFromCmd();
-        int [] arr = Receiver.collectArrayFromCmd(length);
+        Receiver receiver = new Receiver();
+        int length = receiver.collectLengthForArrayFromCmd();
+        int [] arr = receiver.collectArrayFromCmd(length);
         
         Timer timer = new Timer();
         timer.startTimer();
         HeapSort.sort(arr);
         timer.stopTimer();
         timer.printTimer();
-
         Print.printArrayOfInts(arr); 
+
+        receiver.closeReceiver();
 
 
         

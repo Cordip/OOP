@@ -18,5 +18,14 @@ public class Print {
         for (int i = 0; i < arr.length; ++i) {
             System.out.print(arr[i] + " ");
         }
+        System.out.print(System.lineSeparator());
+    }
+
+    public static String arrayToString (int [] arr) {
+        String res = "";
+        for (int i = 0; i < arr.length; ++i) {
+            res = String.format("%s%d ", res, arr[i]);
+        }
+        return res;
     }
 }

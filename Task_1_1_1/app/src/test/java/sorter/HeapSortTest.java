@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.math.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HeapSortTest {
 
-    @Test void simpleArray() {
+    @Test public void simpleArray() {
         int [] simple_array = {5, 4, 3, 2, 1};
         int [] clone_simple_array = simple_array.clone();
         HeapSort.sort(simple_array);
@@ -24,7 +25,7 @@ class HeapSortTest {
         assertArrayEquals(clone_simple_array, simple_array, "app can sort simple array");
     }
 
-    @Test void bigReversedArray() {
+    @Test public void bigReversedArray() {
         int right = 100000;
         int cnt = 0;
         int [] arr = new int[right*2+100];
@@ -43,7 +44,7 @@ class HeapSortTest {
         assertArrayEquals(clone_array, arr, "app can sort big array");
     }
 
-    @Test void veryBigReversedArray() {
+    @Test public void veryBigReversedArray() {
         int right = 10000000;
         int cnt = 0;
         int [] arr = new int[right*2+100];
@@ -62,7 +63,7 @@ class HeapSortTest {
         assertArrayEquals(clone_array, arr, "app can sort very big array");
     }
 
-    @Test void veryBigAlreadySortedArray() {
+    @Test public void veryBigAlreadySortedArray() {
         int right = 10000000;
         int cnt = 0;
         int [] arr = new int[right*2+100];
@@ -75,19 +76,19 @@ class HeapSortTest {
         assertArrayEquals(clone_array, arr, "app can sort very big already sorted array");
     }
 
-    @Test void emptyArray() {
+    @Test public void emptyArray() {
         int [] arr = new int[0];
         HeapSort.sort(arr);
         assertArrayEquals(new int [0], arr, "app can sort empty array");
     }
 
-    @Test void oneElementArray() {
+    @Test public void oneElementArray() {
         int [] arr = {666};
         HeapSort.sort(arr);
         assertArrayEquals(new int [] {666}, arr, "app can sort one element array");
     }
 
-    @RepeatedTest(100) void randomMediumArrays() {
+    @RepeatedTest(100) public void randomMediumArrays() {
         Random rnd = new Random();
 
         int length = rnd.nextInt(10000);
@@ -106,7 +107,7 @@ class HeapSortTest {
 
     }
 
-    @RepeatedTest(1000) void randomSmallArrays() {
+    @RepeatedTest(1000) public void randomSmallArrays() {
         Random rnd = new Random();
 
         int length = rnd.nextInt(100);
