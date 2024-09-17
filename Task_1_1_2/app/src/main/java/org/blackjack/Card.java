@@ -88,4 +88,8 @@ public class Card {
         return card.weight;
     }
 
+    public void changeWeight (int newWeight) {
+        this.weight = newWeight;
+    }
+
 }

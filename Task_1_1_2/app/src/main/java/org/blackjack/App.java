@@ -10,9 +10,9 @@ public class App {
         int num;
         Game game;
         if (args.length>=2) {
-            game = new Game(args[1]);
+            game = new Game(args[1], receiver);
         } else {
-            game = new Game();
+            game = new Game(receiver);
         }
         
         // menu (game) loop

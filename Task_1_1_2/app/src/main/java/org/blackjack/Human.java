@@ -7,18 +7,13 @@ import java.util.Arrays;
 
 public class Human {
 
-    private int score;
-
     private List<Card> deck;
+    private int winPoints;
 
     public Human () {
-        score = 0;
         deck = new ArrayList<Card>();
+        winPoints = 0;
 
-    }
-
-    public void clearDeck () {
-        deck.clear();
     }
 
     public void addCardToDeck () {
@@ -28,15 +23,16 @@ public class Human {
 
 
     public void printDeck (String name) {
-        System.out.printf("%s deck: [ ", name);
-        boolean firstComma = true;
+        System.out.printf("\t%s deck: [ ", name);
+        int cnt = 0;
         for (Card i : deck) {
-            if (firstComma == true) {
-                System.out.printf("%s", i.cardToString());
-                firstComma = false;
+            cnt += 1;
+            if (deck.size() > cnt) {
+                System.out.printf("%s, ", i.cardToString());
             } else {
-                System.out.printf(", %s", i.cardToString());
+                System.out.printf("%s", i.cardToString());
             }
+            
             
         }
         System.out.print("] ");
@@ -45,11 +41,11 @@ public class Human {
 
     public void printDeck () {
         System.out.print("[ ");
-        boolean firstComma = true;
+        int cnt = 0;
         for (Card i : deck) {
-            if (firstComma == true) {
+            cnt += 1;
+            if (deck.size() > cnt) {
                 System.out.printf("%s", i.cardToString());
-                firstComma = false;
             } else {
                 System.out.printf(", %s", i.cardToString());
             }
@@ -68,15 +64,15 @@ public class Human {
             System.out.println(e.getMessage());
         } 
 
-        System.out.printf("%s deck: [ ", name);
-        boolean firstComma = true;
+        System.out.printf("\t%s deck: [ ", name);
+        int cnt = 0;
         
         for (Card i : deck) {
-            if (firstComma == true) {
-                System.out.printf("%s", i.cardToString());
-                firstComma = false;
+            cnt += 1;
+            if (deck.size() > cnt) {
+                System.out.printf("%s, ", i.cardToString());
             } else {
-                System.out.print("<closed card>");
+                System.out.print("<closed card> ");
             }
             
         }
@@ -90,6 +86,52 @@ public class Human {
             totalWeight += i.getWeight();
         }
         System.out.print(totalWeight);
+    }
+
+    public boolean isDeckOverflow () {
+        if (getScore() > 21) {
+            scoreDownAces();
+            if (getScore() > 21) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private void scoreDownAces () {
+        Card tranCard;
+        if (getScore() > 21) {
+            for (int index = 0; index < deck.size(); ++index) {
+                tranCard = deck.get(index);
+                if (tranCard.getWeight() == 11) {
+                    tranCard.changeWeight(1);
+                    deck.set(index, tranCard);
+                    break;
+                }
+            }
+        }
+    }
+
+    public int getScore () {
+        int score = 0;
+        for (Card i : deck) {
+            score += i.getWeight();
+        }
+        return score;
+    }
+
+    public void clear() {
+        this.deck.clear();
+    }
+
+    public void plusWinPoints () {
+        this.winPoints += 1;
+    }
+
+    public int getWinPoints () {
+        return this.winPoints;
     }
 
 
