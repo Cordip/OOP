@@ -1,5 +1,10 @@
 package org.blackjack;
 
+// koloda kart na odin round
+// deleate task 111
+// more direct/logical command approach
+// make abstract human for test
+// hidden in card
 
 public class Game {
 
@@ -7,6 +12,7 @@ public class Game {
     private boolean devMode;
     private Human player;
     private Human dealer;
+    private Deck deck;
     private Receiver receiver;
 
 
@@ -14,16 +20,31 @@ public class Game {
         this.devMode = false;
         round = 1;
         receiver = rec;
-        player = new Human();
-        dealer = new Human();
+        player = new Player();
+        dealer = new Dealer();
+        deck = new Deck();
         System.out.println("WELCOME TO BLACKJACK");
     }
 
     public Game (String devMode, Receiver rec) {
         round = 1;
-        player = new Human();
-        dealer = new Human();
+        player = new Player();
+        dealer = new Dealer();
         receiver = rec;
+        deck = new Deck();
+        System.out.println("WELCOME TO BLACKJACK");
+        if (devMode == "-d") {
+            this.devMode = true;
+            System.out.println("OPENED IN DEV MODE");
+        }
+    }
+
+    public Game (String devMode, Receiver rec, Player player, Dealer dealer) {
+        round = 1;
+        this.player = player;
+        this.dealer = dealer;
+        receiver = rec;
+        deck = new Deck();
         System.out.println("WELCOME TO BLACKJACK");
         if (devMode == "-d") {
             this.devMode = true;
@@ -39,9 +60,10 @@ public class Game {
         
         }
 
+        deck.fill();
         
-        
-        dealCards();
+        Dealer.dealCards(deck, player, dealer);
+        //dealer.dealCards();
 
         printAllDecks(true);
 
@@ -49,6 +71,7 @@ public class Game {
             
         } else {
             playerTurn();
+            //player.turn();
 
             if (winCheck()) {
                 
@@ -64,93 +87,7 @@ public class Game {
 
         player.clear();
         dealer.clear();
-    }
-
-    private void dealCards() {
-        player.addCardToDeck();
-        player.addCardToDeck();
-
-        dealer.addCardToDeck();
-        dealer.addCardToDeck();
-
-        System.out.println("dealer dealed cards");
-    }
-
-    private void completePrintDeck (Human human, String name) {
-        human.isDeckOverflow();
-        human.printDeck(name);
-        System.out.print("=> ");
-        human.printScoreOfDeck();
-        System.out.print(System.lineSeparator());
-    }
-
-    private void completePrintDeck (Human human, String name, boolean hiddenDealer) {
-        if (hiddenDealer) {
-            human.printHiddenDeck(name);
-        } else {
-            human.isDeckOverflow();
-            human.printDeck(name);
-            System.out.print("=> ");
-            human.printScoreOfDeck();
-        }
-        System.out.print(System.lineSeparator());
-    }
-
-    private void printAllDecks (boolean hiddenDealer) {
-        completePrintDeck(player, "player");
-        completePrintDeck(dealer, "dealer", hiddenDealer);
-    }
-
-    private void playerTurn () {
-        int num = 0;
-        while(!player.isDeckOverflow() && player.getScore() <= 21) {
-            if (winCheck()) {
-                printAllDecks(true);
-                break;
-            }
-            System.out.println("1 for new card, 0 to stop");
-            num = receiver.collectIntFromCmd();
-            if (num == 1) {
-                player.addCardToDeck();
-                printAllDecks(true);
-            } else if (num == 0) {
-                printAllDecks(true);
-                break;
-            } else {
-                System.out.println("wrong number");
-            }
-        }
-    }
-
-    private void dealerTurn () {
-        int num = 0;
-        System.out.println("dealer opens his hand");
-        printAllDecks(false);
-        while(!dealer.isDeckOverflow() && dealer.getScore() <= 21) {
-            
-            if (winCheck()) {
-                printAllDecks(false);
-                break;
-            }
-            if (player.getScore() < dealer.getScore()) {
-                num = 0;
-            } else if (dealer.getScore() < 18 || player.getScore() >= dealer.getScore()) {
-                num = 1;
-            } else {
-                num = 0;
-            }
-            if (num == 1) {
-                System.out.println("dealer takes card");
-                dealer.addCardToDeck();
-                printAllDecks(false);
-            } else if (num == 0) {
-                System.out.println("dealer stops");
-                printAllDecks(false);
-                break;
-            } else {
-                System.out.println("wrong number");
-            }
-        }
+        deck.clear();
     }
 
     private boolean winCheck () {

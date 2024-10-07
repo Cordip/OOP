@@ -9,8 +9,9 @@ public class App {
         Receiver receiver = new Receiver();
         int num;
         Game game;
+
         if (args.length>=2) {
-            game = new Game(args[1], receiver);
+            game = new Game(args[1], receiver); // transfer abstract humans
         } else {
             game = new Game(receiver);
         }

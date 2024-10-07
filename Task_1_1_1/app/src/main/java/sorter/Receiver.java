@@ -15,6 +15,10 @@ public class Receiver {
         scannerIn = new Scanner(System.in);
     }
 
+    // public Receiver (stream) {
+    //     scannerIn = new Scanner(stream);
+    // }
+
     public void closeReceiver () {
         scannerIn.close();
     }

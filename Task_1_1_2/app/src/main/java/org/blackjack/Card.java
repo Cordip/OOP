@@ -7,6 +7,7 @@ public class Card {
     private Suits suit;
     private Face face;
     private static Random rnd = new Random();
+    private boolean hidden;
 
     public enum Face {
         ONE, 
@@ -36,6 +37,30 @@ public class Card {
         this.suit = generateSuit();
         this.face = generateFace();
         this.weight = calculateWeight();
+        hidden = false;
+    }
+
+
+    Card (Suits suit, Face face) {
+        this.suit = suit;
+        this.face = face;
+        this.weight = calculateWeight();
+        hidden = false;
+    }
+
+    Card (boolean hid) {
+        this.suit = generateSuit();
+        this.face = generateFace();
+        this.weight = calculateWeight();
+        hidden = hid;
+    }
+
+
+    Card (Suits suit, Face face, boolean hid) {
+        this.suit = suit;
+        this.face = face;
+        this.weight = calculateWeight();
+        hidden = hid;
     }
 
     private static Suits generateSuit () {
