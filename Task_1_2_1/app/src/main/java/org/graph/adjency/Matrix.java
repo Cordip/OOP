@@ -1,5 +1,5 @@
-package org.graph.matrix;
+package org.graph.adjency;
 
-public class Incidence {
+public class Matrix {
     
 }

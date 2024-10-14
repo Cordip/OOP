@@ -6,7 +6,7 @@ package org.graph;
 public class App {
 
     public static void main(String[] args) {
-        org.graph.Graph graph = new org.graph.matrix.Adjency();
+        org.graph.Graph graph = new org.graph.incidence.Matrix();
         // read file
         // from terminal receive command
         // make nodes

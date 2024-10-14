@@ -1,5 +1,5 @@
-package org.graph.list;
+package org.graph.adjency;
 
-public class Adjency {
+public class List {
     
 }

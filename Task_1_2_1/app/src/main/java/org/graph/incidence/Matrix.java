@@ -1,5 +1,5 @@
-package org.graph.matrix;
+package org.graph.incidence;
 
-public class Adjency extends org.graph.Graph {
+public class Matrix extends org.graph.Graph {
     
 }
