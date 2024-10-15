@@ -5,19 +5,26 @@ package org.graph;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.nio.file.*;
+import java.nio.charset.*;
+import java.io.*;
 
 // import org.graph.incidence.Matrix;
 
 public class App {
 
     public static void main(String[] args) {
-        org.graph.Graph graph = new AdjencyMatrix();
-        graph.pr();
-        List<String> lasd = new ArrayList<String>();
+        Graph graph = new AdjencyList();
+        Path file = Paths.get("text.txt");
+        Reader rd = new Reader();
+        rd.readFromFile(file);
+        //graph
+        // graph.pr();
+        // List<String> lasd = new ArrayList<String>();
 
-        lasd.add("sdsd");
+        // lasd.add("sdsd");
 
-        System.out.println(lasd.getLast());
+        // System.out.println(lasd.getLast());
         // read file
         // from terminal receive command
         // make nodes

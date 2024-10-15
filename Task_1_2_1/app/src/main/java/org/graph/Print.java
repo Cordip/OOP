@@ -1,4 +1,4 @@
-package org.graph.util;
+package org.graph;
 
 public class Print {
     
