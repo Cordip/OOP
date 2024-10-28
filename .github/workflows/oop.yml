@@ -5,11 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-<<<<<<< HEAD
     branches: [ "main" ] 
-=======
-    branches: [ "main" ]  
->>>>>>> cff40c6e74544b371b80d49aeb5ba69328fe1ba1
   workflow_dispatch:
 
 jobs:
@@ -34,11 +30,7 @@ jobs:
         id: jacoco
         uses: madrapps/jacoco-report@v1.2
         with:
-<<<<<<< HEAD
           paths: ./${{ github.event.pull_request.title }}/app/build/reports/jacoco/test/jacocoTestReport.xml
-=======
-          paths: ./${{ github.event.pull_request.title }}/build/reports/jacoco/test/jacocoTestReport.xml
->>>>>>> cff40c6e74544b371b80d49aeb5ba69328fe1ba1
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 80
           min-coverage-changed-files: 80
@@ -52,11 +44,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           clean: true
-<<<<<<< HEAD
           folder: ${{ github.event.pull_request.title }}/app/build/docs/javadoc
-=======
-          folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
->>>>>>> cff40c6e74544b371b80d49aeb5ba69328fe1ba1
           target-folder: ${{ github.event.pull_request.title }}
 
   checkstyle:
