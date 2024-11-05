@@ -3,9 +3,32 @@
  */
 package org.hashtable;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Map.Entry;
+
 public class App {
     public String getGreeting() {
+        
+        HashMap<String, Integer> mp = new HashMap<>();
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        ht.put("asd", 1);
+        mp.put("asd", 1);
+        System.out.println(ht.toString());
+        Set<Entry<String, Integer>> eSet = ht.entrySet();
+        Iterator<Entry<String, Integer>> it = eSet.iterator();
+        if (mp.equals(ht)) {
+            System.out.println("YES EQU");
+        } else {
+            System.out.println("NO NO NO");
+        }
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        
         return "Hello World!";
+        
     }
 
     public static void main(String[] args) {
