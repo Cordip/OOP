@@ -147,7 +147,7 @@ public class Hashtable<K,V> implements Map<K,V> {
         }
     }
 
-    public synchronized V put(K key, V value) {
+    public V put(K key, V value) {
         if (value == null) {
             throw new NullPointerException();
         }
@@ -171,7 +171,7 @@ public class Hashtable<K,V> implements Map<K,V> {
 
     // TASK_3)
 
-    public synchronized V remove(Object key) {
+    public V remove(Object key) {
         Entry<?,?> tab[] = table;
         int hash = key.hashCode();
         int index = (hash & 0x7FFFFFFF) % tab.length;
@@ -198,7 +198,7 @@ public class Hashtable<K,V> implements Map<K,V> {
     //TASK_4)
 
     @SuppressWarnings("unchecked")
-    public synchronized V get(Object key) {
+    public V get(Object key) {
         Entry<?,?> tab[] = table;
         int hash = key.hashCode();
         int index = (hash & 0x7FFFFFFF) % tab.length;
@@ -213,7 +213,7 @@ public class Hashtable<K,V> implements Map<K,V> {
 
     // TASK_6)
 
-    public synchronized boolean containsKey(Object key) {
+    public boolean containsKey(Object key) {
         Entry<?,?> tab[] = table;
         int hash = key.hashCode();
         int index = (hash & 0x7FFFFFFF) % tab.length;
@@ -395,7 +395,7 @@ public class Hashtable<K,V> implements Map<K,V> {
 
     // TASK_8)
 
-    public synchronized boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (o == this)
             return true;
 
@@ -403,10 +403,9 @@ public class Hashtable<K,V> implements Map<K,V> {
             return false;
         if (t.size() != size())
             return false;
+
         try {
-            @SuppressWarnings("unchecked")
-            Entry<K,V>[] tab = (Entry<K,V>[]) table;
-            for (Entry<K, V> e : tab) {
+            for (Map.Entry<K, V> e : entrySet()) {
                 K key = e.getKey();
                 V value = e.getValue();
                 if (value == null) {
@@ -426,7 +425,7 @@ public class Hashtable<K,V> implements Map<K,V> {
 
     // TASK_9)
 
-    public synchronized String toString() {
+    public String toString() {
         int max = size() - 1;
         if (max == -1)
             return "{}";
@@ -451,15 +450,15 @@ public class Hashtable<K,V> implements Map<K,V> {
 
     // else functions
 
-    public synchronized int size() {
+    public int size() {
         return count;
     }
 
-    public synchronized boolean isEmpty() {
+    public boolean isEmpty() {
         return count == 0;
     }
 
-    public synchronized void clear() {
+    public void clear() {
         Entry<?,?> tab[] = table;
         for (int index = tab.length; --index >= 0; )
             tab[index] = null;
@@ -515,12 +514,12 @@ public class Hashtable<K,V> implements Map<K,V> {
         }
     }
 
-    public synchronized void putAll(Map<? extends K, ? extends V> t) {
+    public void putAll(Map<? extends K, ? extends V> t) {
         for (Map.Entry<? extends K, ? extends V> e : t.entrySet())
             put(e.getKey(), e.getValue());
     }
 
-    public synchronized boolean contains(Object value) {
+    public boolean contains(Object value) {
         if (value == null) {
             throw new NullPointerException();
         }
