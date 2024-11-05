@@ -6,6 +6,11 @@ package org.hashtable;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
 class HashtableTest {
     @Test void simpleTestOnCreationPutUpdate () {
         Hashtable<String, Integer> ht = new Hashtable<>();
@@ -37,6 +42,30 @@ class HashtableTest {
             realHt.put(Integer.toString(i), i);
         }
         assert(ht.equals(realHt));
+        assert(realHt.equals(ht));
+    }
+
+    @Test void notEqualsTest () {
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        java.util.Hashtable<String,Integer> realHt = new java.util.Hashtable<>();
+        for (int i = 0; i < 500; i++) {
+            ht.put(Integer.toString(i), i);
+            realHt.put(Integer.toString(i), i);
+        }
+        realHt.put("asda", 2);
+        assert(!ht.equals(realHt));
+    }
+
+    @Test void containsKeyTest () {
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        ht.put("100", 2);
+        assert(ht.containsKey("100"));
+    }
+
+    @Test void containsTest () {
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        ht.put("100", 2);
+        assert(ht.contains(2));
     }
 
     @Test void removeTest () {
@@ -45,5 +74,25 @@ class HashtableTest {
         ht.put("aaa", 222);
         ht.remove("aaa");
         assert(ht.isEmpty());
+    }
+
+    @Test void iteratorTest () {
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        java.util.Hashtable<String,Integer> realHt = new java.util.Hashtable<>();
+        for (int i = 0; i < 500; i++) {
+            ht.put(Integer.toString(i), i);
+            realHt.put(Integer.toString(i), i);
+        }
+        Set<Entry<String,Integer>> st = ht.entrySet();
+        Iterator<Entry<String, Integer>> it = st.iterator();
+
+        Set<Entry<String,Integer>> realSt = realHt.entrySet();
+        Iterator<Entry<String, Integer>> realIt = realSt.iterator();
+
+        while (it.hasNext() && realIt.hasNext()) {
+            assert(realIt.next().equals(it.next()));
+        }
+        //assert(false);
+        //Iterator<Map<String,Integer>> it = ht.iterator();
     }
 }

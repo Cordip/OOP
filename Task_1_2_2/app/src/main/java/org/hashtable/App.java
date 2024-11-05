@@ -12,20 +12,35 @@ public class App {
     public String getGreeting() {
         
         HashMap<String, Integer> mp = new HashMap<>();
-        Hashtable<String, Integer> ht = new Hashtable<>();
-        ht.put("asd", 1);
+        // Hashtable<String, Integer> ht = new Hashtable<>();
+        // ht.put("asd", 1);
         mp.put("asd", 1);
-        System.out.println(ht.toString());
-        Set<Entry<String, Integer>> eSet = ht.entrySet();
-        Iterator<Entry<String, Integer>> it = eSet.iterator();
-        if (mp.equals(ht)) {
-            System.out.println("YES EQU");
-        } else {
-            System.out.println("NO NO NO");
+        // System.out.println(ht.toString());
+        // Set<Entry<String, Integer>> eSet = ht.entrySet();
+        // Iterator<Entry<String, Integer>> it = eSet.iterator();
+        // if (mp.equals(ht)) {
+        //     System.out.println("YES EQU");
+        // } else {
+        //     System.out.println("NO NO NO");
+        // }
+        // while (it.hasNext()) {
+        //     System.out.println(it.next());
+        // }
+        // System.out.println("----------");
+
+        Hashtable<String, Integer> ht = new Hashtable<>();
+
+        ht.put("asd", 1);
+        ht.put("daa", 1);
+        ht.put("xaxa", 2);
+        ht.put("oooo", 004142);
+
+        Iterator<Integer> ooa = ht.iterator();
+        while(ooa.hasNext()) {
+            //Integer ko = ooa.next();
+            System.out.println(ooa.next());
         }
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }
+
         
         return "Hello World!";
         
