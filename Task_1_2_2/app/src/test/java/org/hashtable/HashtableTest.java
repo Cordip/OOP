@@ -95,4 +95,28 @@ class HashtableTest {
         //assert(false);
         //Iterator<Map<String,Integer>> it = ht.iterator();
     }
+
+    @Test void foreachTest () {
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        java.util.Hashtable<String,Integer> realHt = new java.util.Hashtable<>();
+        int cnt = 0;
+
+        for (int i = 0; i < 500; i++) {
+            ht.put(Integer.toString(i), i);
+            realHt.put(Integer.toString(i), i);
+            cnt++;
+        }
+        for (var enty : ht.entrySet()) {
+            assert(realHt.containsKey(enty.getKey()));
+            assert(realHt.containsValue(enty.getValue()));
+            realHt.remove(enty.getKey());
+            cnt--;
+        }
+        if (cnt != 0) {
+            assert(false);
+        }
+        if (realHt.size() != 0) {
+            assert(false);
+        }
+    }
 }

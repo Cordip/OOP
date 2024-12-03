@@ -1,6 +1,7 @@
 package org.hashtable;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 
 public class Hashtable<K,V> implements Map<K,V> {
 
@@ -232,7 +233,7 @@ public class Hashtable<K,V> implements Map<K,V> {
     public Iterator<V> iterator() {
         return this.<V>getIterator(ENTRIES);
     }
-
+    
     private <T> Iterator<T> getIterator(int type) {
         if (count == 0) {
             return Collections.emptyIterator();
@@ -538,6 +539,5 @@ public class Hashtable<K,V> implements Map<K,V> {
     public boolean containsValue(Object value) {
         return contains(value);
     }
-    
 
 }
