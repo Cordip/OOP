@@ -8,8 +8,10 @@ import java.util.concurrent.Future;
 
 public class ParallelSN{
     long [] array;
+    // TODO: добавить изменение кол-ва потоков
     final int numThreads = Runtime.getRuntime().availableProcessors();
     final int limit;
+    // TODO: добавить размер по корню
     final int chunkSize = 100_000;
 
     public ParallelSN(long [] array) {
@@ -21,7 +23,7 @@ public class ParallelSN{
         ExecutorService executor = Executors.newFixedThreadPool(numThreads);
         int sqrtLimit = (int) Math.sqrt(limit);
         Boolean res = false;
-
+        // делить массив на кол-во выделенных потоков
         for (int start = sqrtLimit + 1; start <= limit; start += chunkSize) {
             int chunkStart = start;
             int chunkEnd = Math.min(chunkStart + chunkSize - 1, limit);
@@ -29,7 +31,7 @@ public class ParallelSN{
             // Future<Boolean> future = executor.submit(() -> new CallableSN(array).checkArray(chunkStart, chunkEnd));
             Future<Boolean> future = executor.submit(new CallableSN(array, chunkStart, chunkEnd));
             // Future<Boolean> future = executor.submit(() -> new CallableSN(array, chunkStart, chunkEnd));
-
+            
             try {
                 res |= future.get();
                 // System.out.println(res);
