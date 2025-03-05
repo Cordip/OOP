@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.simplenumbers","l":"App"},{"p":"org.simplenumbers","l":"ParallelSN"},{"p":"org.simplenumbers","l":"SimpleNumbers"},{"p":"org.simplenumbers","l":"Util"}];updateSearchResults();
