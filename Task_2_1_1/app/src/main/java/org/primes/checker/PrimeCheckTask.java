@@ -15,14 +15,14 @@ public class PrimeCheckTask implements Callable<Boolean> {
     }
 
     @Override
-    public Boolean call() throws Exception {
+    public Boolean call() throws InterruptedException {
         for (int j = startIndex; j < endIndex; j++) {
+            if (Thread.currentThread().isInterrupted()) {
+                 throw new InterruptedException("PrimeCheckTask execution was interrupted.");
+            }
+
             if (!Util.isPrime(array[j])) {
                 return true;
-            }
-            // Check for interruption, important for early exit
-            if (Thread.currentThread().isInterrupted()) {
-                return false;
             }
         }
         return false;
