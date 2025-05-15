@@ -1,7 +1,5 @@
 package sorter;
 
-import sorter.Swap;
-
 /**
  *class of all heap sort functions.
  */

@@ -1,4 +1,4 @@
-package sorter;
+package org.blackjack;
 
 import java.util.Scanner;
 
@@ -15,10 +15,6 @@ public class Receiver {
         scannerIn = new Scanner(System.in);
     }
 
-    // public Receiver (stream) {
-    //     scannerIn = new Scanner(stream);
-    // }
-
     public void closeReceiver () {
         scannerIn.close();
     }
@@ -27,13 +23,13 @@ public class Receiver {
      *function that collects int (length of future array).
      *@return length of array.
      */
-    public int collectLengthForArrayFromCmd() {
-        int length = -1;
-        System.out.println("Write length of the array");
-        while(length == -1) {
+    public int collectIntFromCmd() {
+        int num = -1;
+        System.out.println("Write number");
+        while(num == -1) {
             if (scannerIn.hasNextInt()) {
-                length = scannerIn.nextInt();
-                System.out.println("inputted length " + length);
+                num = scannerIn.nextInt();
+                //System.out.println("inputted number " + num);
             } else {
                 scannerIn.next();
                 System.out.println("Writed not int");
@@ -41,7 +37,7 @@ public class Receiver {
             }
         }
 
-        return length;
+        return num;
     }
     /**
      *collects array with given length.

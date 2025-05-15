@@ -7,12 +7,6 @@
  
 package sorter;
 
-import sorter.HeapSort;
-import sorter.Print;
-import sorter.Receiver;
-
-import java.util.Arrays;
-
 
 /**
  *main class of this application.
