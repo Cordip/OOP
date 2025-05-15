@@ -1,0 +1,250 @@
+Script started on 2024-10-29 10:34:30+07:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="110" LINES="4"]
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ bin/python client/client.py  [Kbin/python client/client.py [K./script
+[?2004lbash: ./script: No such file or directory
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ ls
+[?2004l[0m[01;34mapp[0m  [01;34mgradle[0m  [01;32mgradlew[0m  gradlew.bat  script.sh  settings.gradle  typescript
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ ./scrit pt.sj h
+[?2004lbash: ./script.sh: Permission denied
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ sudo sc  ./script.sh
+[?2004l[sudo] password for cordis: 
+sudo: ./script.sh: command not found
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ chmod +x script.sh 
+[?2004l]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ ./ script.sh 
+[?2004lbash: ./: Is a directory
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ . ./ script.sh [1P
+[?2004lapp/src/main/java/org/hashtable/Hashtableol.java:10: error: class Hashtable is public, should be declared in a file named Hashtable.java
+ public class Hashtable<K,V>
+        ^
+app/src/main/java/org/hashtable/HashTable.java:10: error: package com.google.common.collect.Multiset does not exist
+import com.google.common.collect.Multiset.Entry;
+                                         ^
+app/src/main/java/org/hashtable/Hashtableol.java:1188: error: package jdk.internal.misc is not visible
+         private static final jdk.internal.misc.Unsafe unsafe
+                                          ^
+  (package jdk.internal.misc is declared in module java.base, which does not export it to the unnamed module)
+app/src/main/java/org/hashtable/HashTable.java:102: error: cannot find symbol
+        Entry<?,?> tab[] = table;
+        ^
+  symbol:   class Entry
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:104: error: cannot find symbol
+            for (Entry<?,?> e = tab[i] ; e != null ; e = e.next) {
+                 ^
+  symbol:   class Entry
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:117: error: cannot find symbol
+            return new Enumerator<>(type, false);
+                       ^
+  symbol:   class Enumerator
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:125: error: cannot find symbol
+            return new Enumerator<>(type, true);
+                       ^
+  symbol:   class Enumerator
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:174: error: incompatible types: String cannot be converted to K
+        int hash = getHash(key);
+                           ^
+  where K is a type-variable:
+    K extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:175: error: cannot find symbol
+        if(entries[hash] != null) {
+           ^
+  symbol:   variable entries
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:176: error: cannot find symbol
+            HashEntry temp = entries[hash];
+                             ^
+  symbol:   variable entries
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:184: error: incompatible types: Object cannot be converted to String
+            return temp.value;
+                       ^
+app/src/main/java/org/hashtable/HashTable.java:200: error: cannot find symbol
+            for (Map.Entry<K, V> e : entrySet()) {
+                                     ^
+  symbol:   method entrySet()
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:221: error: cannot find symbol
+        return key.hashCode() % INITIAL_SIZE;
+                                ^
+  symbol:   variable INITIAL_SIZE
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/HashTable.java:239: error: cannot find symbol
+            return new Entry<>(hash, key, value,
+                       ^
+  symbol:   class Entry
+  location: class HashEntry<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashEntry
+    V extends Object declared in class HashEntry
+app/src/main/java/org/hashtable/HashTable.java:240: error: cannot find symbol
+                                  (next==null ? null : (Entry<K,V>) next.clone()));
+                                                        ^
+  symbol:   class Entry
+  location: class HashEntry<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashEntry
+    V extends Object declared in class HashEntry
+app/src/main/java/org/hashtable/HashTable.java:284: error: cannot find symbol
+        for (HashEntry<K, V> entry : entries) {
+                                     ^
+  symbol:   variable entries
+  location: class HashTable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class HashTable
+    V extends Object declared in class HashTable
+app/src/main/java/org/hashtable/Hashtableol.java:150: error: cannot find symbol
+         return this.<K>getEnumeration(KEYS);
+                    ^
+  symbol: method <K>getEnumeration(int)
+  where K is a type-variable:
+    K extends Object declared in class Hashtable
+app/src/main/java/org/hashtable/Hashtableol.java:166: error: cannot find symbol
+         return this.<V>getEnumeration(VALUES);
+                    ^
+  symbol: method <V>getEnumeration(int)
+  where V is a type-variable:
+    V extends Object declared in class Hashtable
+app/src/main/java/org/hashtable/Hashtableol.java:527: error: no suitable method found for synchronizedSet(Hashtable<K,V>.KeySet,Hashtable<K,V>)
+            Set<K> kkasd = Collections.synchronizedSet(new KeySet(), this);
+                                      ^
+    method Collections.<T#1>synchronizedSet(Set<T#1>,Object) is not applicable
+      (<T#1>synchronizedSet(Set<T#1>,Object) is not public in Collections; cannot be accessed from outside package)
+    method Collections.<T#2>synchronizedSet(Set<T#2>) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where K,V,T#1,T#2 are type-variables:
+    K extends Object declared in class Hashtable
+    V extends Object declared in class Hashtable
+    T#1 extends Object declared in method <T#1>synchronizedSet(Set<T#1>,Object)
+    T#2 extends Object declared in method <T#2>synchronizedSet(Set<T#2>)
+app/src/main/java/org/hashtable/Hashtableol.java:528: error: no suitable method found for synchronizedSet(Hashtable<K,V>.KeySet,Hashtable<K,V>)
+             keySet = Collections.synchronizedSet(new KeySet(), this);
+                                 ^
+    method Collections.<T#1>synchronizedSet(Set<T#1>,Object) is not applicable
+      (<T#1>synchronizedSet(Set<T#1>,Object) is not public in Collections; cannot be accessed from outside package)
+    method Collections.<T#2>synchronizedSet(Set<T#2>) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where K,V,T#1,T#2 are type-variables:
+    K extends Object declared in class Hashtable
+    V extends Object declared in class Hashtable
+    T#1 extends Object declared in method <T#1>synchronizedSet(Set<T#1>,Object)
+    T#2 extends Object declared in method <T#2>synchronizedSet(Set<T#2>)
+app/src/main/java/org/hashtable/Hashtableol.java:569: error: no suitable method found for synchronizedSet(Hashtable<K,V>.EntrySet,Hashtable<K,V>)
+             entrySet = Collections.synchronizedSet(new EntrySet(), this);
+                                   ^
+    method Collections.<T#1>synchronizedSet(Set<T#1>,Object) is not applicable
+      (<T#1>synchronizedSet(Set<T#1>,Object) is not public in Collections; cannot be accessed from outside package)
+    method Collections.<T#2>synchronizedSet(Set<T#2>) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where K,V,T#1,T#2 are type-variables:
+    K extends Object declared in class Hashtable
+    V extends Object declared in class Hashtable
+    T#1 extends Object declared in method <T#1>synchronizedSet(Set<T#1>,Object)
+    T#2 extends Object declared in method <T#2>synchronizedSet(Set<T#2>)
+app/src/main/java/org/hashtable/Hashtableol.java:648: error: no suitable method found for synchronizedCollection(Hashtable<K,V>.ValueCollection,Hashtable<K,V>)
+             values = Collections.synchronizedCollection(new ValueCollection(),
+                                 ^
+    method Collections.<T#1>synchronizedCollection(Collection<T#1>,Object) is not applicable
+      (<T#1>synchronizedCollection(Collection<T#1>,Object) is not public in Collections; cannot be accessed from outside package)
+    method Collections.<T#2>synchronizedCollection(Collection<T#2>) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where K,V,T#1,T#2 are type-variables:
+    K extends Object declared in class Hashtable
+    V extends Object declared in class Hashtable
+    T#1 extends Object declared in method <T#1>synchronizedCollection(Collection<T#1>,Object)
+    T#2 extends Object declared in method <T#2>synchronizedCollection(Collection<T#2>)
+app/src/main/java/org/hashtable/Hashtableol.java:1168: error: cannot find symbol
+         SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Map.Entry[].class, length);
+         ^
+  symbol:   variable SharedSecrets
+  location: class Hashtable<K,V>
+  where K,V are type-variables:
+    K extends Object declared in class Hashtable
+    V extends Object declared in class Hashtable
+app/src/main/java/org/hashtable/Hashtableol.java:1189: error: package jdk.internal.misc is not visible
+                 = jdk.internal.misc.Unsafe.getUnsafe();
+                               ^
+  (package jdk.internal.misc is declared in module java.base, which does not export it to the unnamed module)
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+24 errors
+app/myBuild/classes/. : no such file or directory
+Loading source file app/src/main/java/org/hashtable/App.java...
+Loading source file app/src/main/java/org/hashtable/HashTable.java...
+Loading source file app/src/main/java/org/hashtable/Hashtableol.java...
+Constructing Javadoc information...
+app/src/main/java/org/hashtable/Hashtableol.java:10: error: class Hashtable is public, should be declared in a file named Hashtable.java
+ public class Hashtable<K,V>
+        ^
+app/src/main/java/org/hashtable/HashTable.java:10: error: package com.google.common.collect.Multiset does not exist
+import com.google.common.collect.Multiset.Entry;
+                                         ^
+app/src/main/java/org/hashtable/Hashtableol.java:1188: error: package jdk.internal.misc is not visible
+         private static final jdk.internal.misc.Unsafe unsafe
+                                          ^
+  (package jdk.internal.misc is declared in module java.base, which does not export it to the unnamed module)
+3 errors
+Error: Unable to access jarfile app/myBuild/jar/App.jar
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ [K[cordis@archmty Task_1_2_2]$ ./script.sh 
+[?2004lLoading source file app/src/main/java/org/hashtable/App.java...
+Constructing Javadoc information...
+Creating destination directory: "app/myBuild/javadoc/"
+Building index for all the packages and classes...
+Standard Doclet version 21.0.4+7-LTS
+Building tree for all the packages and classes...
+Generating app/myBuild/javadoc/org/hashtable/App.html...
+app/src/main/java/org/hashtable/App.java:7: warning: no comment
+public class App {
+       ^
+app/src/main/java/org/hashtable/App.java:7: warning: use of default constructor, which does not provide a comment
+public class App {
+       ^
+app/src/main/java/org/hashtable/App.java:8: warning: no comment
+    public String getGreeting() {
+                  ^
+app/src/main/java/org/hashtable/App.java:16: warning: no comment
+    public static void main(String[] args) {
+                       ^
+Generating app/myBuild/javadoc/org/hashtable/package-summary.html...
+Generating app/myBuild/javadoc/org/hashtable/package-tree.html...
+Generating app/myBuild/javadoc/overview-tree.html...
+Building index for all classes...
+Generating app/myBuild/javadoc/allclasses-index.html...
+Generating app/myBuild/javadoc/allpackages-index.html...
+Generating app/myBuild/javadoc/index-all.html...
+Generating app/myBuild/javadoc/search.html...
+Generating app/myBuild/javadoc/index.html...
+Generating app/myBuild/javadoc/help-doc.html...
+4 warnings
+{asd=2}
+Hello World!
+]0;cordis@archmty:~/nsu/OOP/Task_1_2_2[?2004h[cordis@archmty Task_1_2_2]$ 
+Script done on 2024-10-30 09:15:53+07:00 [COMMAND_EXIT_CODE="0"]
