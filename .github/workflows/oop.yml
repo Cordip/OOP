@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ] 
   workflow_dispatch:
 
 jobs:
@@ -31,7 +31,6 @@ jobs:
         uses: madrapps/jacoco-report@v1.2
         with:
           paths: ./${{ github.event.pull_request.title }}/app/build/reports/jacoco/test/jacocoTestReport.xml
-
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 80
           min-coverage-changed-files: 80
