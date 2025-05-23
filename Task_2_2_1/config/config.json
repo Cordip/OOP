@@ -1,0 +1,18 @@
+{
+    "workTimeMs": 120000,
+    "port": 8080,
+    "orderQueueCapacity": 15,
+    "warehouseCapacity": 10,
+    "bakers": [
+      { "id": 1, "cookTimeMinMs": 800, "cookTimeMaxMs": 1200 },
+      { "id": 2, "cookTimeMinMs": 900, "cookTimeMaxMs": 1100 }
+    ],
+    "couriers": [
+      { "id": 1, "capacity": 3, "deliveryTimeMinMs": 1000, "deliveryTimeMaxMs": 2000 }
+    ],
+    "repositoryLogPath": "/app/data/orders.log",
+    "logFilePath": "/app/logs/pizzeria_app.log",
+    "loggerType": "CONSOLE",
+    "ingredientCookingMultiplierMs": 150,
+    "baselineAverageCookTimeMs": 1000
+}

@@ -1,0 +1,32 @@
+services:
+  pizzeria-server:
+    # --- ИЗМЕНЕНИЕ: Используем собранный образ напрямую ---
+    build:
+      context: ./app # Директория с Dockerfile
+      dockerfile: Dockerfile
+    # Вместо build используем image, т.к. мы уже собрали его вручную
+    image: pizzeria-server:latest # Указываем имя и тег собранного образа
+    # -----------------------------------------------------
+    container_name: pizzeria_app
+    ports:
+      # Порт хоста:Порт контейнера.
+      # Убедись, что порт контейнера (справа) совпадает с портом в config.json и EXPOSE в Dockerfile
+      - "8080:8080"
+    volumes:
+      # Монтируем наш локальный конфиг в контейнер (read-only)
+      # Убедись, что ./config/config.json существует на хосте!
+      - ./config/config.json:/app/config/config.json:ro
+      # Монтируем локальную папку data для хранения orders.log
+      # Папка ./data будет создана на хосте Docker'ом, если не существует
+      - ./data:/app/data
+      # Монтируем локальную папку logs для хранения pizzeria_app.log
+      # Папка ./logs будет создана на хосте Docker'ом, если не существует
+      - ./logs:/app/logs
+    environment:
+      # Передаем путь к конфигу через переменную окружения (как и ожидает Java-код)
+      PIZZERIA_CONFIG_PATH: /app/config/config.json
+      # Другие переменные (PIZZERIA_PORT, PIZZERIA_DATA_DIR, PIZZERIA_LOGS_DIR)
+      # не нужны, если приложение читает все из config.json по пути выше.
+      # Можно добавить переменную для уровня логирования Java, если Log4j2 ее поддерживает, например:
+      # LOGGING_LEVEL: DEBUG # Или то имя, которое использует Log4j2/приложение
+    restart: unless-stopped # Политика перезапуска контейнера

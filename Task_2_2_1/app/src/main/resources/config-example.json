@@ -1,0 +1,21 @@
+{
+  "workTimeMs": 6000,
+  "orderQueueCapacity": 15,
+  "warehouseCapacity": 10,
+  "loggerType": "CONSOLE",
+  "logFilePath": "logs/pizzeria_app.log",
+  "repositoryLogPath": "data/orders.log",
+  "ingredientCookingMultiplierMs": 200,
+  "baselineAverageCookTimeMs": 1500,
+  "listenerType" : "TCP",
+  "port": 8080,
+  "bakers": [
+    { "id": 1, "cookTimeMinMs": 1000, "cookTimeMaxMs": 1800 },
+    { "id": 2, "cookTimeMinMs": 1200, "cookTimeMaxMs": 2200 },
+    { "id": 3, "cookTimeMinMs": 900,  "cookTimeMaxMs": 1500 }
+  ],
+  "couriers": [
+    { "id": 1, "capacity": 2, "deliveryTimeMinMs": 2000, "deliveryTimeMaxMs": 3500 },
+    { "id": 2, "capacity": 3, "deliveryTimeMinMs": 2500, "deliveryTimeMaxMs": 4500 }
+  ]
+}
