@@ -1,0 +1,7 @@
+curl -X POST http://localhost:8080/api/orders \
+     -H "Content-Type: application/json" \
+     -d '{"pizzaDetails": "Пепперони с двойным сыром"}'
+     
+     
+     
+curl -X GET http://localhost:8080/api/orders/1
