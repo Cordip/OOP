@@ -95,9 +95,10 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">AppCoreConfig</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Основной конфигурационный класс Spring.
- Включает загрузку свойств из PizzeriaConfig и определяет бины
- для основных компонентов симуляции (очередь, склад), списки работников
- и регистрирует метрики для наблюдаемости.</div>
+ <p>
+ Определяет и настраивает ключевые бины приложения, такие как очередь заказов,
+ склад, списки работников (пекарей и курьеров), а также регистрирует
+ метрики для мониторинга.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,8 +110,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">AppCoreConfig</a><wbr>(<a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a>&nbsp;config,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig)" class="member-name-link">AppCoreConfig</a><wbr>(<a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a>&nbsp;config)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -130,42 +130,40 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#allWorkers(java.util.List,java.util.List)" class="member-name-link">allWorkers</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;&nbsp;bakers,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;&nbsp;couriers)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Собирает всех работников (пекарей и курьеров) в один список Runnable.</div>
+<div class="block">Собирает всех работников (пекарей и курьеров) в один общий список.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#bakers(org.example.pizzeria.processing.queue.OrderQueue,org.example.pizzeria.processing.warehouse.Warehouse,org.example.pizzeria.order.service.OrderRepository)" class="member-name-link">bakers</a><wbr>(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue,
  <a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
  <a href="../order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a>&nbsp;repository)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Создает список бинов пекарей (как Runnable).</div>
+<div class="block">Создает и настраивает список пекарей как исполняемых задач (Runnable).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#concurrentOrderQueue()" class="member-name-link">concurrentOrderQueue</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#concurrentOrderQueue(io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">concurrentOrderQueue</a><wbr>(io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Создает бин потокобезопасной очереди заказов с ограниченной емкостью.</div>
+<div class="block">Создает бин потокобезопасной очереди заказов.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#concurrentWarehouse()" class="member-name-link">concurrentWarehouse</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#concurrentWarehouse(io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">concurrentWarehouse</a><wbr>(io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Создает бин потокобезопасного склада пицц с ограниченной емкостью.</div>
+<div class="block">Создает бин потокобезопасного склада готовых пицц.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#couriers(org.example.pizzeria.processing.warehouse.Warehouse,org.example.pizzeria.order.service.OrderRepository)" class="member-name-link">couriers</a><wbr>(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
  <a href="../order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a>&nbsp;repository)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Создает список бинов курьеров (как Runnable).</div>
+<div class="block">Создает и настраивает список курьеров как исполняемых задач (Runnable).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.micrometer.core.instrument.binder.MeterBinder</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">queueSizeGauge</a><wbr>(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue)" class="member-name-link">queueSizeGauge</a><wbr>(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера очереди заказов.</div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера очереди заказов.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>io.micrometer.core.instrument.binder.MeterBinder</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">warehouseSizeGauge</a><wbr>(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse)" class="member-name-link">warehouseSizeGauge</a><wbr>(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера склада пицц.</div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера склада.</div>
 </div>
 </div>
 </div>
@@ -185,11 +183,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.example.pizzeria.config.PizzeriaConfig,io.micrometer.core.instrument.MeterRegistry)">
+<section class="detail" id="&lt;init&gt;(org.example.pizzeria.config.PizzeriaConfig)">
 <h3>AppCoreConfig</h3>
 <div class="member-signature"><span class="annotations">@Autowired
-</span><span class="modifiers">public</span>&nbsp;<span class="element-name">AppCoreConfig</span><wbr><span class="parameters">(<a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a>&nbsp;config,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="element-name">AppCoreConfig</span><wbr><span class="parameters">(<a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a>&nbsp;config)</span></div>
 </section>
 </li>
 </ul>
@@ -201,54 +198,58 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="concurrentOrderQueue()">
+<section class="detail" id="concurrentOrderQueue(io.micrometer.core.instrument.MeterRegistry)">
 <h3>concurrentOrderQueue</h3>
 <div class="member-signature"><span class="annotations">@Bean
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></span>&nbsp;<span class="element-name">concurrentOrderQueue</span>()</div>
-<div class="block">Создает бин потокобезопасной очереди заказов с ограниченной емкостью.
- Передает MeterRegistry для внутренних счетчиков.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="concurrentWarehouse()">
-<h3>concurrentWarehouse</h3>
-<div class="member-signature"><span class="annotations">@Bean
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a></span>&nbsp;<span class="element-name">concurrentWarehouse</span>()</div>
-<div class="block">Создает бин потокобезопасного склада пицц с ограниченной емкостью.
- Передает MeterRegistry для внутренних счетчиков.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue,io.micrometer.core.instrument.MeterRegistry)">
-<h3>queueSizeGauge</h3>
-<div class="member-signature"><span class="annotations">@Bean
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">io.micrometer.core.instrument.binder.MeterBinder</span>&nbsp;<span class="element-name">queueSizeGauge</span><wbr><span class="parameters">(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</span></div>
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера очереди заказов.
- Использует MeterBinder для чистой регистрации.</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></span>&nbsp;<span class="element-name">concurrentOrderQueue</span><wbr><span class="parameters">(io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</span></div>
+<div class="block">Создает бин потокобезопасной очереди заказов.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>orderQueue</code> - Бин очереди.</dd>
-<dd><code>meterRegistry</code> - Реестр метрик.</dd>
+<dd><code>meterRegistry</code> - Реестр для регистрации внутренних метрик очереди.</dd>
 <dt>Returns:</dt>
-<dd>MeterBinder для регистрации метрики.</dd>
+<dd>Экземпляр <a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue"><code>OrderQueue</code></a>.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse,io.micrometer.core.instrument.MeterRegistry)">
-<h3>warehouseSizeGauge</h3>
+<section class="detail" id="concurrentWarehouse(io.micrometer.core.instrument.MeterRegistry)">
+<h3>concurrentWarehouse</h3>
 <div class="member-signature"><span class="annotations">@Bean
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">io.micrometer.core.instrument.binder.MeterBinder</span>&nbsp;<span class="element-name">warehouseSizeGauge</span><wbr><span class="parameters">(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
- io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</span></div>
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера склада пицц.
- Использует MeterBinder для чистой регистрации.</div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a></span>&nbsp;<span class="element-name">concurrentWarehouse</span><wbr><span class="parameters">(io.micrometer.core.instrument.MeterRegistry&nbsp;meterRegistry)</span></div>
+<div class="block">Создает бин потокобезопасного склада готовых пицц.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>warehouse</code> - Бин склада.</dd>
-<dd><code>meterRegistry</code> - Реестр метрик.</dd>
+<dd><code>meterRegistry</code> - Реестр для регистрации внутренних метрик склада.</dd>
 <dt>Returns:</dt>
-<dd>MeterBinder для регистрации метрики.</dd>
+<dd>Экземпляр <a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse"><code>Warehouse</code></a>.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue)">
+<h3>queueSizeGauge</h3>
+<div class="member-signature"><span class="annotations">@Bean
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">io.micrometer.core.instrument.binder.MeterBinder</span>&nbsp;<span class="element-name">queueSizeGauge</span><wbr><span class="parameters">(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue)</span></div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера очереди заказов.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>orderQueue</code> - Бин очереди, за которым будет наблюдать метрика.</dd>
+<dt>Returns:</dt>
+<dd><code>MeterBinder</code> для автоматической регистрации метрики.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse)">
+<h3>warehouseSizeGauge</h3>
+<div class="member-signature"><span class="annotations">@Bean
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">io.micrometer.core.instrument.binder.MeterBinder</span>&nbsp;<span class="element-name">warehouseSizeGauge</span><wbr><span class="parameters">(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse)</span></div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера склада.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>warehouse</code> - Бин склада, за которым будет наблюдать метрика.</dd>
+<dt>Returns:</dt>
+<dd><code>MeterBinder</code> для автоматической регистрации метрики.</dd>
 </dl>
 </section>
 </li>
@@ -259,15 +260,14 @@ loadScripts(document, 'script');</script>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</span>&nbsp;<span class="element-name">bakers</span><wbr><span class="parameters">(<a href="../processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a>&nbsp;orderQueue,
  <a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
  <a href="../order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a>&nbsp;repository)</span></div>
-<div class="block">Создает список бинов пекарей (как Runnable).
- Зависит от репозитория, очереди и склада.</div>
+<div class="block">Создает и настраивает список пекарей как исполняемых задач (Runnable).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>orderQueue</code> - Очередь заказов.</dd>
-<dd><code>warehouse</code> - Склад пицц.</dd>
-<dd><code>repository</code> - Репозиторий заказов.</dd>
+<dd><code>orderQueue</code> - Очередь, из которой пекари будут брать заказы.</dd>
+<dd><code>warehouse</code> - Склад, на который пекари будут класть готовую пиццу.</dd>
+<dd><code>repository</code> - Репозиторий для обновления статусов заказов.</dd>
 <dt>Returns:</dt>
-<dd>Список Runnable пекарей.</dd>
+<dd>Список пекарей, готовых к запуску в отдельных потоках.</dd>
 </dl>
 </section>
 </li>
@@ -277,14 +277,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@Bean
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</span>&nbsp;<span class="element-name">couriers</span><wbr><span class="parameters">(<a href="../processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse">Warehouse</a>&nbsp;warehouse,
  <a href="../order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a>&nbsp;repository)</span></div>
-<div class="block">Создает список бинов курьеров (как Runnable).
- Зависит от репозитория и склада.</div>
+<div class="block">Создает и настраивает список курьеров как исполняемых задач (Runnable).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>warehouse</code> - Склад пицц.</dd>
-<dd><code>repository</code> - Репозиторий заказов.</dd>
+<dd><code>warehouse</code> - Склад, с которого курьеры будут забирать пиццу.</dd>
+<dd><code>repository</code> - Репозиторий для обновления статусов заказов.</dd>
 <dt>Returns:</dt>
-<dd>Список Runnable курьеров.</dd>
+<dd>Список курьеров, готовых к запуску в отдельных потоках.</dd>
 </dl>
 </section>
 </li>
@@ -295,14 +294,14 @@ loadScripts(document, 'script');</script>
 @Qualifier("allWorkers")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</span>&nbsp;<span class="element-name">allWorkers</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;&nbsp;bakers,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;&nbsp;couriers)</span></div>
-<div class="block">Собирает всех работников (пекарей и курьеров) в один список Runnable.
- Используется для внедрения в WorkerManagerService.</div>
+<div class="block">Собирает всех работников (пекарей и курьеров) в один общий список.
+ Этот бин будет внедрен в <code>WorkerManagerService</code> для запуска всех потоков.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bakers</code> - Список бинов пекарей.</dd>
 <dd><code>couriers</code> - Список бинов курьеров.</dd>
 <dt>Returns:</dt>
-<dd>Объединенный список всех работников.</dd>
+<dd>Объединенный список всех работников (<code>Runnable</code>).</dd>
 </dl>
 </section>
 </li>

@@ -93,11 +93,9 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Order</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Представляет заказ в пиццерии.
- Содержит информацию о заказе и его текущем статусе.
- Изменение статуса выполняется через публичные методы moveToNextStatus/discard,
- ответственность за логирование лежит на вызывающем коде.
- Содержит package-private конструктор и метод setStatusInternal для использования
- ТОЛЬКО классом OrderRecoveryAccessor при восстановлении состояния.</div>
+ <p>
+ Этот класс является центральной сущностью домена, отслеживающей жизненный цикл заказа
+ от его получения до доставки. Класс потокобезопасен.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,7 +110,7 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,java.lang.String)" class="member-name-link">Order</a><wbr>(int&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pizzaDetails)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Публичный конструктор для СОЗДАНИЯ НОВОГО заказа в системе.</div>
+<div class="block">Создает новый заказ с начальным статусом <a href="OrderStatus.html#RECEIVED"><code>OrderStatus.RECEIVED</code></a>.</div>
 </div>
 </div>
 </section>
@@ -131,7 +129,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#discard()" class="member-name-link">discard</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Пытается перевести заказ в статус DISCARDED (в памяти).</div>
+<div class="block">Переводит заказ в статус <a href="OrderStatus.html#DISCARDED"><code>OrderStatus.DISCARDED</code></a>.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -151,7 +149,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveToNextStatus()" class="member-name-link">moveToNextStatus</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Пытается перевести заказ в следующий логический статус (в памяти).</div>
+<div class="block">Переводит заказ в следующий логический статус.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -178,12 +176,11 @@ loadScripts(document, 'script');</script>
 <h3>Order</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Order</span><wbr><span class="parameters">(int&nbsp;id,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pizzaDetails)</span></div>
-<div class="block">Публичный конструктор для СОЗДАНИЯ НОВОГО заказа в системе.
- Устанавливает начальный статус RECEIVED.</div>
+<div class="block">Создает новый заказ с начальным статусом <a href="OrderStatus.html#RECEIVED"><code>OrderStatus.RECEIVED</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - ID нового заказа (должен быть &gt; 0).</dd>
-<dd><code>pizzaDetails</code> - Описание пиццы (не null и не пустое).</dd>
+<dd><code>id</code> - уникальный идентификатор заказа.</dd>
+<dd><code>pizzaDetails</code> - описание пиццы.</dd>
 </dl>
 </section>
 </li>
@@ -217,12 +214,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="moveToNextStatus()">
 <h3>moveToNextStatus</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">moveToNextStatus</span>()</div>
-<div class="block">Пытается перевести заказ в следующий логический статус (в памяти).
- Ответственность за вызов repository.logStatusUpdate ЛЕЖИТ НА ВЫЗЫВАЮЩЕМ КОДЕ.
- Потокобезопасен.</div>
+<div class="block">Переводит заказ в следующий логический статус.
+ <p>
+ Например, из <code>RECEIVED</code> в <code>COOKING</code>. Не выполняет переход
+ из финальных статусов. Ответственность за персистентное сохранение
+ нового статуса лежит на вызывающем коде.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>true</code> если статус был успешно изменен, <code>false</code> если переход невозможен.</dd>
+<dd><code>true</code> если статус был успешно изменен, иначе <code>false</code>.</dd>
 </dl>
 </section>
 </li>
@@ -230,12 +229,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="discard()">
 <h3>discard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">discard</span>()</div>
-<div class="block">Пытается перевести заказ в статус DISCARDED (в памяти).
- Ответственность за вызов repository.logStatusUpdate ЛЕЖИТ НА ВЫЗЫВАЮЩЕМ КОДЕ.
- Потокобезопасен.</div>
+<div class="block">Переводит заказ в статус <a href="OrderStatus.html#DISCARDED"><code>OrderStatus.DISCARDED</code></a>.
+ <p>
+ Используется для отмены заказа на любом этапе.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>true</code> если статус был успешно изменен на DISCARDED, <code>false</code> если уже был DISCARDED.</dd>
+<dd><code>true</code> если статус был успешно изменен, иначе <code>false</code> (если уже был отменен).</dd>
 </dl>
 </section>
 </li>

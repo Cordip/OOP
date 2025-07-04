@@ -92,12 +92,19 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-id">id</span></code> - Уникальный идентификатор пекаря.</dd>
+<dd><code><span id="param-cookTimeMinMs">cookTimeMinMs</span></code> - Минимальное время приготовления (мс).</dd>
+<dd><code><span id="param-cookTimeMaxMs">cookTimeMaxMs</span></code> - Максимальное время приготовления (мс).</dd>
+</dl>
+<dl class="notes">
 <dt>Enclosing class:</dt>
 <dd><code><a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">PizzeriaConfig.BakerConfig</span>(@jakarta.validation.constraints.Positive(message="Baker ID must be positive") int&nbsp;id, @jakarta.validation.constraints.Positive(message="Baker minimum cook time must be positive") int&nbsp;cookTimeMinMs, @jakarta.validation.constraints.Positive(message="Baker maximum cook time must be positive") int&nbsp;cookTimeMaxMs)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
+<div class="block">Конфигурация для одного пекаря.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -132,12 +139,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Baker maximum cook time must be positive") int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cookTimeMaxMs()" class="member-name-link">cookTimeMaxMs</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>cookTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-cookTimeMaxMs"><code>cookTimeMaxMs</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Baker minimum cook time must be positive") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#cookTimeMinMs()" class="member-name-link">cookTimeMinMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>cookTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-cookTimeMinMs"><code>cookTimeMinMs</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -155,7 +162,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Baker ID must be positive") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#id()" class="member-name-link">id</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-id"><code>id</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -191,9 +198,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>BakerConfig</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - the value for the <code>id</code> record component</dd>
-<dd><code>cookTimeMinMs</code> - the value for the <code>cookTimeMinMs</code> record component</dd>
-<dd><code>cookTimeMaxMs</code> - the value for the <code>cookTimeMaxMs</code> record component</dd>
+<dd><code>id</code> - the value for the <a href="#param-id"><code>id</code></a> record component</dd>
+<dd><code>cookTimeMinMs</code> - the value for the <a href="#param-cookTimeMinMs"><code>cookTimeMinMs</code></a> record component</dd>
+<dd><code>cookTimeMaxMs</code> - the value for the <a href="#param-cookTimeMaxMs"><code>cookTimeMaxMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -257,10 +264,10 @@ loadScripts(document, 'script');</script>
 <h3>id</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Baker ID must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Baker ID must be positive") int</span>&nbsp;<span class="element-name">id</span>()</div>
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-id"><code>id</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>id</code> record component</dd>
+<dd>the value of the <a href="#param-id"><code>id</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -269,10 +276,10 @@ loadScripts(document, 'script');</script>
 <h3>cookTimeMinMs</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Baker minimum cook time must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Baker minimum cook time must be positive") int</span>&nbsp;<span class="element-name">cookTimeMinMs</span>()</div>
-<div class="block">Returns the value of the <code>cookTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-cookTimeMinMs"><code>cookTimeMinMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>cookTimeMinMs</code> record component</dd>
+<dd>the value of the <a href="#param-cookTimeMinMs"><code>cookTimeMinMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -281,10 +288,10 @@ loadScripts(document, 'script');</script>
 <h3>cookTimeMaxMs</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Baker maximum cook time must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Baker maximum cook time must be positive") int</span>&nbsp;<span class="element-name">cookTimeMaxMs</span>()</div>
-<div class="block">Returns the value of the <code>cookTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-cookTimeMaxMs"><code>cookTimeMaxMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>cookTimeMaxMs</code> record component</dd>
+<dd>the value of the <a href="#param-cookTimeMaxMs"><code>cookTimeMaxMs</code></a> record component</dd>
 </dl>
 </section>
 </li>

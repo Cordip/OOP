@@ -98,6 +98,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">OrderStatus</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a>&gt;</span></div>
+<div class="block">Перечисление, представляющее все возможные статусы заказа в системе.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -119,17 +120,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Enum Constant</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="#COOKED" class="member-name-link">COOKED</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Заказ приготовлен и находится на складе.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#COOKING" class="member-name-link">COOKING</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Пекарь начал готовить заказ.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="#DELIVERED" class="member-name-link">DELIVERED</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Заказ успешно доставлен клиенту.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#DELIVERING" class="member-name-link">DELIVERING</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Курьер забрал заказ и доставляет его.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="#DISCARDED" class="member-name-link">DISCARDED</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Заказ отменен по какой-либо причине.</div>
+</div>
 <div class="col-first odd-row-color"><code><a href="#RECEIVED" class="member-name-link">RECEIVED</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Заказ принят, но еще не в работе.</div>
+</div>
 </div>
 </section>
 </li>
@@ -184,36 +197,42 @@ the order they are declared.</div>
 <section class="detail" id="RECEIVED">
 <h3>RECEIVED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">RECEIVED</span></div>
+<div class="block">Заказ принят, но еще не в работе.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COOKING">
 <h3>COOKING</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">COOKING</span></div>
+<div class="block">Пекарь начал готовить заказ.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="COOKED">
 <h3>COOKED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">COOKED</span></div>
+<div class="block">Заказ приготовлен и находится на складе.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DELIVERING">
 <h3>DELIVERING</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">DELIVERING</span></div>
+<div class="block">Курьер забрал заказ и доставляет его.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DELIVERED">
 <h3>DELIVERED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">DELIVERED</span></div>
+<div class="block">Заказ успешно доставлен клиенту. Финальный статус.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DISCARDED">
 <h3>DISCARDED</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></span>&nbsp;<span class="element-name">DISCARDED</span></div>
+<div class="block">Заказ отменен по какой-либо причине. Финальный статус.</div>
 </section>
 </li>
 </ul>

@@ -91,13 +91,25 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-workTimeMs">workTimeMs</span></code> - Время работы симуляции в миллисекундах.</dd>
+<dd><code><span id="param-orderQueueCapacity">orderQueueCapacity</span></code> - Вместимость очереди заказов.</dd>
+<dd><code><span id="param-warehouseCapacity">warehouseCapacity</span></code> - Вместимость склада готовых пицц.</dd>
+<dd><code><span id="param-logFilePath">logFilePath</span></code> - Устаревший путь к файлу лога.</dd>
+<dd><code><span id="param-repositoryLogPath">repositoryLogPath</span></code> - Путь к файлу репозитория заказов для хранения состояния.</dd>
+<dd><code><span id="param-ingredientCookingMultiplierMs">ingredientCookingMultiplierMs</span></code> - Множитель времени готовки за единицу сложности пиццы.</dd>
+<dd><code><span id="param-baselineAverageCookTimeMs">baselineAverageCookTimeMs</span></code> - Базовое время для расчета мастерства пекарей.</dd>
+<dd><code><span id="param-bakers">bakers</span></code> - Список конфигураций пекарей.</dd>
+<dd><code><span id="param-couriers">couriers</span></code> - Список конфигураций курьеров.</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="annotations">@ConfigurationProperties(prefix="pizzeria")
 @Validated
 </span><span class="modifiers">public record </span><span class="element-name type-name-label">PizzeriaConfig</span>(@jakarta.validation.constraints.Min(value=1000L, message="Work time must be at least 1000 ms") long&nbsp;workTimeMs, @jakarta.validation.constraints.Positive(message="Order queue capacity must be positive") int&nbsp;orderQueueCapacity, @jakarta.validation.constraints.Positive(message="Warehouse capacity must be positive") int&nbsp;warehouseCapacity, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;logFilePath, @NotBlank(message="Repository log path cannot be blank") <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;repositoryLogPath, @jakarta.validation.constraints.PositiveOrZero(message="Ingredient cooking multiplier must be non-negative") int&nbsp;ingredientCookingMultiplierMs, @jakarta.validation.constraints.PositiveOrZero(message="Baseline average cook time must be non-negative") int&nbsp;baselineAverageCookTimeMs, @NotEmpty(message="Bakers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a>&gt;&nbsp;bakers, @NotEmpty(message="Couriers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a>&gt;&nbsp;couriers)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Конфигурация пиццерии, загружаемая из application.properties с префиксом "pizzeria".
- Используется record для неизменяемости и валидации Jakarta Bean Validation.</div>
+ Используется для определения всех операционных параметров симуляции.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -112,10 +124,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="PizzeriaConfig.BakerConfig.html" class="type-name-link" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конфигурация для одного пекаря.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final record&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="PizzeriaConfig.CourierConfig.html" class="type-name-link" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Конфигурация для одного курьера.</div>
+</div>
 </div>
 </section>
 </li>
@@ -156,17 +172,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotEmpty(message="Bakers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#bakers()" class="member-name-link">bakers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>bakers</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-bakers"><code>bakers</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.PositiveOrZero(message="Baseline average cook time must be non-negative") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#baselineAverageCookTimeMs()" class="member-name-link">baselineAverageCookTimeMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>baselineAverageCookTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-baselineAverageCookTimeMs"><code>baselineAverageCookTimeMs</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotEmpty(message="Couriers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#couriers()" class="member-name-link">couriers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>couriers</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-couriers"><code>couriers</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -181,22 +197,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.PositiveOrZero(message="Ingredient cooking multiplier must be non-negative") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ingredientCookingMultiplierMs()" class="member-name-link">ingredientCookingMultiplierMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>ingredientCookingMultiplierMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-ingredientCookingMultiplierMs"><code>ingredientCookingMultiplierMs</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#logFilePath()" class="member-name-link">logFilePath</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>logFilePath</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-logFilePath"><code>logFilePath</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Order queue capacity must be positive") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#orderQueueCapacity()" class="member-name-link">orderQueueCapacity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>orderQueueCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-orderQueueCapacity"><code>orderQueueCapacity</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@NotBlank(message="Repository log path cannot be blank") <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#repositoryLogPath()" class="member-name-link">repositoryLogPath</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>repositoryLogPath</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-repositoryLogPath"><code>repositoryLogPath</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -206,12 +222,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Warehouse capacity must be positive") int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#warehouseCapacity()" class="member-name-link">warehouseCapacity</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>warehouseCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-warehouseCapacity"><code>warehouseCapacity</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Min(value=1000L, message="Work time must be at least 1000 ms") long</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#workTimeMs()" class="member-name-link">workTimeMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>workTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-workTimeMs"><code>workTimeMs</code></a> record component.</div>
 </div>
 </div>
 </div>
@@ -253,15 +269,15 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>PizzeriaConfig</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>workTimeMs</code> - the value for the <code>workTimeMs</code> record component</dd>
-<dd><code>orderQueueCapacity</code> - the value for the <code>orderQueueCapacity</code> record component</dd>
-<dd><code>warehouseCapacity</code> - the value for the <code>warehouseCapacity</code> record component</dd>
-<dd><code>logFilePath</code> - the value for the <code>logFilePath</code> record component</dd>
-<dd><code>repositoryLogPath</code> - the value for the <code>repositoryLogPath</code> record component</dd>
-<dd><code>ingredientCookingMultiplierMs</code> - the value for the <code>ingredientCookingMultiplierMs</code> record component</dd>
-<dd><code>baselineAverageCookTimeMs</code> - the value for the <code>baselineAverageCookTimeMs</code> record component</dd>
-<dd><code>bakers</code> - the value for the <code>bakers</code> record component</dd>
-<dd><code>couriers</code> - the value for the <code>couriers</code> record component</dd>
+<dd><code>workTimeMs</code> - the value for the <a href="#param-workTimeMs"><code>workTimeMs</code></a> record component</dd>
+<dd><code>orderQueueCapacity</code> - the value for the <a href="#param-orderQueueCapacity"><code>orderQueueCapacity</code></a> record component</dd>
+<dd><code>warehouseCapacity</code> - the value for the <a href="#param-warehouseCapacity"><code>warehouseCapacity</code></a> record component</dd>
+<dd><code>logFilePath</code> - the value for the <a href="#param-logFilePath"><code>logFilePath</code></a> record component</dd>
+<dd><code>repositoryLogPath</code> - the value for the <a href="#param-repositoryLogPath"><code>repositoryLogPath</code></a> record component</dd>
+<dd><code>ingredientCookingMultiplierMs</code> - the value for the <a href="#param-ingredientCookingMultiplierMs"><code>ingredientCookingMultiplierMs</code></a> record component</dd>
+<dd><code>baselineAverageCookTimeMs</code> - the value for the <a href="#param-baselineAverageCookTimeMs"><code>baselineAverageCookTimeMs</code></a> record component</dd>
+<dd><code>bakers</code> - the value for the <a href="#param-bakers"><code>bakers</code></a> record component</dd>
+<dd><code>couriers</code> - the value for the <a href="#param-couriers"><code>couriers</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -320,10 +336,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@Min(value=1000L,
      message="Work time must be at least 1000 ms")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Min(value=1000L, message="Work time must be at least 1000 ms") long</span>&nbsp;<span class="element-name">workTimeMs</span>()</div>
-<div class="block">Returns the value of the <code>workTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-workTimeMs"><code>workTimeMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>workTimeMs</code> record component</dd>
+<dd>the value of the <a href="#param-workTimeMs"><code>workTimeMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -332,10 +348,10 @@ loadScripts(document, 'script');</script>
 <h3>orderQueueCapacity</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Order queue capacity must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Order queue capacity must be positive") int</span>&nbsp;<span class="element-name">orderQueueCapacity</span>()</div>
-<div class="block">Returns the value of the <code>orderQueueCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-orderQueueCapacity"><code>orderQueueCapacity</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>orderQueueCapacity</code> record component</dd>
+<dd>the value of the <a href="#param-orderQueueCapacity"><code>orderQueueCapacity</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -344,10 +360,10 @@ loadScripts(document, 'script');</script>
 <h3>warehouseCapacity</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Warehouse capacity must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Warehouse capacity must be positive") int</span>&nbsp;<span class="element-name">warehouseCapacity</span>()</div>
-<div class="block">Returns the value of the <code>warehouseCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-warehouseCapacity"><code>warehouseCapacity</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>warehouseCapacity</code> record component</dd>
+<dd>the value of the <a href="#param-warehouseCapacity"><code>warehouseCapacity</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -355,10 +371,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="logFilePath()">
 <h3>logFilePath</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">logFilePath</span>()</div>
-<div class="block">Returns the value of the <code>logFilePath</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-logFilePath"><code>logFilePath</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>logFilePath</code> record component</dd>
+<dd>the value of the <a href="#param-logFilePath"><code>logFilePath</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -367,10 +383,10 @@ loadScripts(document, 'script');</script>
 <h3>repositoryLogPath</h3>
 <div class="member-signature"><span class="annotations">@NotBlank(message="Repository log path cannot be blank")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@NotBlank(message="Repository log path cannot be blank") <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">repositoryLogPath</span>()</div>
-<div class="block">Returns the value of the <code>repositoryLogPath</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-repositoryLogPath"><code>repositoryLogPath</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>repositoryLogPath</code> record component</dd>
+<dd>the value of the <a href="#param-repositoryLogPath"><code>repositoryLogPath</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -379,10 +395,10 @@ loadScripts(document, 'script');</script>
 <h3>ingredientCookingMultiplierMs</h3>
 <div class="member-signature"><span class="annotations">@PositiveOrZero(message="Ingredient cooking multiplier must be non-negative")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.PositiveOrZero(message="Ingredient cooking multiplier must be non-negative") int</span>&nbsp;<span class="element-name">ingredientCookingMultiplierMs</span>()</div>
-<div class="block">Returns the value of the <code>ingredientCookingMultiplierMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-ingredientCookingMultiplierMs"><code>ingredientCookingMultiplierMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>ingredientCookingMultiplierMs</code> record component</dd>
+<dd>the value of the <a href="#param-ingredientCookingMultiplierMs"><code>ingredientCookingMultiplierMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -391,10 +407,10 @@ loadScripts(document, 'script');</script>
 <h3>baselineAverageCookTimeMs</h3>
 <div class="member-signature"><span class="annotations">@PositiveOrZero(message="Baseline average cook time must be non-negative")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.PositiveOrZero(message="Baseline average cook time must be non-negative") int</span>&nbsp;<span class="element-name">baselineAverageCookTimeMs</span>()</div>
-<div class="block">Returns the value of the <code>baselineAverageCookTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-baselineAverageCookTimeMs"><code>baselineAverageCookTimeMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>baselineAverageCookTimeMs</code> record component</dd>
+<dd>the value of the <a href="#param-baselineAverageCookTimeMs"><code>baselineAverageCookTimeMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -404,10 +420,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@NotEmpty(message="Bakers list cannot be empty")
 @Valid
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@NotEmpty(message="Bakers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a>&gt;</span>&nbsp;<span class="element-name">bakers</span>()</div>
-<div class="block">Returns the value of the <code>bakers</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-bakers"><code>bakers</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>bakers</code> record component</dd>
+<dd>the value of the <a href="#param-bakers"><code>bakers</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -417,10 +433,10 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@NotEmpty(message="Couriers list cannot be empty")
 @Valid
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@NotEmpty(message="Couriers list cannot be empty") @Valid <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a>&gt;</span>&nbsp;<span class="element-name">couriers</span>()</div>
-<div class="block">Returns the value of the <code>couriers</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-couriers"><code>couriers</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>couriers</code> record component</dd>
+<dd>the value of the <a href="#param-couriers"><code>couriers</code></a> record component</dd>
 </dl>
 </section>
 </li>

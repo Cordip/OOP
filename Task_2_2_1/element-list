@@ -8,7 +8,6 @@ org.example.pizzeria.order.dto
 org.example.pizzeria.order.exception
 org.example.pizzeria.order.service
 org.example.pizzeria.order.service.impl
-org.example.pizzeria.processing.config
 org.example.pizzeria.processing.delivery
 org.example.pizzeria.processing.kitchen
 org.example.pizzeria.processing.queue
@@ -19,3 +18,4 @@ org.example.pizzeria.processing.warehouse
 org.example.pizzeria.processing.warehouse.impl
 org.example.pizzeria.shared.exception
 org.example.pizzeria.shared.lifecycle
+org.example.pizzeria.shared.utils

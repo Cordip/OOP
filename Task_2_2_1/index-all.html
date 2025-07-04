@@ -69,13 +69,13 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/config/AppCoreConfig.html#allWorkers(java.util.List,java.util.List)" class="member-name-link">allWorkers(List&lt;Runnable&gt;, List&lt;Runnable&gt;)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Собирает всех работников (пекарей и курьеров) в один список Runnable.</div>
+<div class="block">Собирает всех работников (пекарей и курьеров) в один общий список.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/AppCoreConfig.html" class="type-name-link" title="class in org.example.pizzeria.config">AppCoreConfig</a> - Class in <a href="org/example/pizzeria/config/package-summary.html">org.example.pizzeria.config</a></dt>
 <dd>
 <div class="block">Основной конфигурационный класс Spring.</div>
 </dd>
-<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">AppCoreConfig(PizzeriaConfig, MeterRegistry)</a> - Constructor for class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
+<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig)" class="member-name-link">AppCoreConfig(PizzeriaConfig)</a> - Constructor for class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/shared/lifecycle/ApplicationLifecycleManager.html" class="type-name-link" title="class in org.example.pizzeria.shared.lifecycle">ApplicationLifecycleManager</a> - Class in <a href="org/example/pizzeria/shared/lifecycle/package-summary.html">org.example.pizzeria.shared.lifecycle</a></dt>
 <dd>
@@ -99,22 +99,22 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#bakers()" class="member-name-link">bakers()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>bakers</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-bakers"><code>bakers</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/AppCoreConfig.html#bakers(org.example.pizzeria.processing.queue.OrderQueue,org.example.pizzeria.processing.warehouse.Warehouse,org.example.pizzeria.order.service.OrderRepository)" class="member-name-link">bakers(OrderQueue, Warehouse, OrderRepository)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Создает список бинов пекарей (как Runnable).</div>
+<div class="block">Создает и настраивает список пекарей как исполняемых задач (Runnable).</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#baselineAverageCookTimeMs()" class="member-name-link">baselineAverageCookTimeMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>baselineAverageCookTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-baselineAverageCookTimeMs"><code>baselineAverageCookTimeMs</code></a> record component.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#capacity()" class="member-name-link">capacity()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>capacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#param-capacity"><code>capacity</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html#capacity()" class="member-name-link">capacity()</a> - Method in class org.example.pizzeria.processing.queue.impl.<a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></dt>
 <dd>&nbsp;</dd>
@@ -132,45 +132,47 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Закрывает <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/PrintWriter.html" title="class or interface in java.io" class="external-link"><code>PrintWriter</code></a> для лог-файла.</div>
 </dd>
-<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#concurrentOrderQueue()" class="member-name-link">concurrentOrderQueue()</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
+<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#concurrentOrderQueue(io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">concurrentOrderQueue(MeterRegistry)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Создает бин потокобезопасной очереди заказов с ограниченной емкостью.</div>
+<div class="block">Создает бин потокобезопасной очереди заказов.</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" class="type-name-link" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a> - Class in <a href="org/example/pizzeria/processing/queue/impl/package-summary.html">org.example.pizzeria.processing.queue.impl</a></dt>
 <dd>
 <div class="block">Потокобезопасная реализация очереди заказов <a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue"><code>OrderQueue</code></a>
- с ограниченной емкостью на основе <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html" title="class or interface in java.util" class="external-link"><code>LinkedList</code></a> и встроенных
- мониторов Java (synchronized, wait, notifyAll).</div>
+ с ограниченной емкостью.</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">ConcurrentOrderQueue(PizzeriaConfig, MeterRegistry)</a> - Constructor for class org.example.pizzeria.processing.queue.impl.<a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></dt>
 <dd>
-<div class="block">Конструктор.</div>
+<div class="block">Конструктор для создания очереди.</div>
 </dd>
-<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#concurrentWarehouse()" class="member-name-link">concurrentWarehouse()</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
+<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#concurrentWarehouse(io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">concurrentWarehouse(MeterRegistry)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Создает бин потокобезопасного склада пицц с ограниченной емкостью.</div>
+<div class="block">Создает бин потокобезопасного склада готовых пицц.</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/warehouse/impl/ConcurrentWarehouse.html" class="type-name-link" title="class in org.example.pizzeria.processing.warehouse.impl">ConcurrentWarehouse</a> - Class in <a href="org/example/pizzeria/processing/warehouse/impl/package-summary.html">org.example.pizzeria.processing.warehouse.impl</a></dt>
 <dd>
 <div class="block">Потокобезопасная реализация склада пицц <a href="org/example/pizzeria/processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse"><code>Warehouse</code></a>
- с ограниченной емкостью на основе <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html" title="class or interface in java.util" class="external-link"><code>LinkedList</code></a> и встроенных
- мониторов Java (synchronized, wait, notifyAll).</div>
+ с ограниченной емкостью.</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/warehouse/impl/ConcurrentWarehouse.html#%3Cinit%3E(org.example.pizzeria.config.PizzeriaConfig,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">ConcurrentWarehouse(PizzeriaConfig, MeterRegistry)</a> - Constructor for class org.example.pizzeria.processing.warehouse.impl.<a href="org/example/pizzeria/processing/warehouse/impl/ConcurrentWarehouse.html" title="class in org.example.pizzeria.processing.warehouse.impl">ConcurrentWarehouse</a></dt>
 <dd>
-<div class="block">Конструктор.</div>
+<div class="block">Конструктор для создания склада.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#COOKED" class="member-name-link">COOKED</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Заказ приготовлен и находится на складе.</div>
+</dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#COOKING" class="member-name-link">COOKING</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Пекарь начал готовить заказ.</div>
+</dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#cookTimeMaxMs()" class="member-name-link">cookTimeMaxMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>cookTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#param-cookTimeMaxMs"><code>cookTimeMaxMs</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#cookTimeMinMs()" class="member-name-link">cookTimeMinMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>cookTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#param-cookTimeMinMs"><code>cookTimeMinMs</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html#count()" class="member-name-link">count()</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html" title="class in org.example.pizzeria.order.service.impl">FileOrderRepository</a></dt>
 <dd>&nbsp;</dd>
@@ -190,11 +192,11 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#couriers()" class="member-name-link">couriers()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>couriers</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-couriers"><code>couriers</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/AppCoreConfig.html#couriers(org.example.pizzeria.processing.warehouse.Warehouse,org.example.pizzeria.order.service.OrderRepository)" class="member-name-link">couriers(Warehouse, OrderRepository)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Создает список бинов курьеров (как Runnable).</div>
+<div class="block">Создает и настраивает список курьеров как исполняемых задач (Runnable).</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/api/OrderController.html#createOrder(org.example.pizzeria.order.dto.CreateOrderRequest)" class="member-name-link">createOrder(CreateOrderRequest)</a> - Method in class org.example.pizzeria.order.api.<a href="org/example/pizzeria/order/api/OrderController.html" title="class in org.example.pizzeria.order.api">OrderController</a></dt>
 <dd>
@@ -224,23 +226,29 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#DELIVERED" class="member-name-link">DELIVERED</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Заказ успешно доставлен клиенту.</div>
+</dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#DELIVERING" class="member-name-link">DELIVERING</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Курьер забрал заказ и доставляет его.</div>
+</dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#deliveryTimeMaxMs()" class="member-name-link">deliveryTimeMaxMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>deliveryTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#param-deliveryTimeMaxMs"><code>deliveryTimeMaxMs</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#deliveryTimeMinMs()" class="member-name-link">deliveryTimeMinMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>deliveryTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#param-deliveryTimeMinMs"><code>deliveryTimeMinMs</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/Order.html#discard()" class="member-name-link">discard()</a> - Method in class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></dt>
 <dd>
-<div class="block">Пытается перевести заказ в статус DISCARDED (в памяти).</div>
+<div class="block">Переводит заказ в статус <a href="org/example/pizzeria/domain/order/OrderStatus.html#DISCARDED"><code>OrderStatus.DISCARDED</code></a>.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#DISCARDED" class="member-name-link">DISCARDED</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Заказ отменен по какой-либо причине.</div>
+</dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html#drainRemaining()" class="member-name-link">drainRemaining()</a> - Method in class org.example.pizzeria.processing.queue.impl.<a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></dt>
 <dd>
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span></div>
@@ -357,7 +365,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/pizzeria/domain/order/Order.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/domain/worker/Worker.html#getId()" class="member-name-link">getId()</a> - Method in interface org.example.pizzeria.domain.worker.<a href="org/example/pizzeria/domain/worker/Worker.html" title="interface in org.example.pizzeria.domain.worker">Worker</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает уникальный идентификатор работника.</div>
+</dd>
 <dt><a href="org/example/pizzeria/processing/delivery/Courier.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.pizzeria.processing.delivery.<a href="org/example/pizzeria/processing/delivery/Courier.html" title="class in org.example.pizzeria.processing.delivery">Courier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/kitchen/Baker.html#getId()" class="member-name-link">getId()</a> - Method in class org.example.pizzeria.processing.kitchen.<a href="org/example/pizzeria/processing/kitchen/Baker.html" title="class in org.example.pizzeria.processing.kitchen">Baker</a></dt>
@@ -450,24 +460,22 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#id()" class="member-name-link">id()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html#param-id"><code>id</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#id()" class="member-name-link">id()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html#param-id"><code>id</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#ingredientCookingMultiplierMs()" class="member-name-link">ingredientCookingMultiplierMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>ingredientCookingMultiplierMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-ingredientCookingMultiplierMs"><code>ingredientCookingMultiplierMs</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html#initialize()" class="member-name-link">initialize()</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html" title="class in org.example.pizzeria.order.service.impl">FileOrderRepository</a></dt>
 <dd>
 <div class="block">Инициализация репозитория.</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html#isAcceptingOrders()" class="member-name-link">isAcceptingOrders()</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a></dt>
-<dd>
-<div class="block">Проверяет, принимает ли сервис заказы в данный момент.</div>
-</dd>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in class org.example.pizzeria.processing.queue.impl.<a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/queue/OrderQueue.html#isEmpty()" class="member-name-link">isEmpty()</a> - Method in interface org.example.pizzeria.processing.queue.<a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></dt>
@@ -489,8 +497,14 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#logFilePath()" class="member-name-link">logFilePath()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>logFilePath</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-logFilePath"><code>logFilePath</code></a> record component.</div>
 </dd>
+<dt><a href="org/example/pizzeria/shared/utils/LogRotator.html" class="type-name-link" title="class in org.example.pizzeria.shared.utils">LogRotator</a> - Class in <a href="org/example/pizzeria/shared/utils/package-summary.html">org.example.pizzeria.shared.utils</a></dt>
+<dd>
+<div class="block">Утилитарный класс для выполнения ротации лог-файлов по размеру.</div>
+</dd>
+<dt><a href="org/example/pizzeria/shared/utils/LogRotator.html#%3Cinit%3E()" class="member-name-link">LogRotator()</a> - Constructor for class org.example.pizzeria.shared.utils.<a href="org/example/pizzeria/shared/utils/LogRotator.html" title="class in org.example.pizzeria.shared.utils">LogRotator</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html#logStatusUpdate(int,org.example.pizzeria.domain.order.OrderStatus)" class="member-name-link">logStatusUpdate(int, OrderStatus)</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/FileOrderRepository.html" title="class in org.example.pizzeria.order.service.impl">FileOrderRepository</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/order/service/OrderRepository.html#logStatusUpdate(int,org.example.pizzeria.domain.order.OrderStatus)" class="member-name-link">logStatusUpdate(int, OrderStatus)</a> - Method in interface org.example.pizzeria.order.service.<a href="org/example/pizzeria/order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a></dt>
@@ -508,7 +522,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/Order.html#moveToNextStatus()" class="member-name-link">moveToNextStatus()</a> - Method in class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></dt>
 <dd>
-<div class="block">Пытается перевести заказ в следующий логический статус (в памяти).</div>
+<div class="block">Переводит заказ в следующий логический статус.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
@@ -521,7 +535,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/Order.html#%3Cinit%3E(int,java.lang.String)" class="member-name-link">Order(int, String)</a> - Constructor for class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></dt>
 <dd>
-<div class="block">Публичный конструктор для СОЗДАНИЯ НОВОГО заказа в системе.</div>
+<div class="block">Создает новый заказ с начальным статусом <a href="org/example/pizzeria/domain/order/OrderStatus.html#RECEIVED"><code>OrderStatus.RECEIVED</code></a>.</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/service/OrderAcceptor.html" class="type-name-link" title="interface in org.example.pizzeria.order.service">OrderAcceptor</a> - Interface in <a href="org/example/pizzeria/order/service/package-summary.html">org.example.pizzeria.order.service</a></dt>
 <dd>
@@ -554,7 +568,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#orderQueueCapacity()" class="member-name-link">orderQueueCapacity()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>orderQueueCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-orderQueueCapacity"><code>orderQueueCapacity</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderRecoveryAccessor.html" class="type-name-link" title="class in org.example.pizzeria.domain.order">OrderRecoveryAccessor</a> - Class in <a href="org/example/pizzeria/domain/order/package-summary.html">org.example.pizzeria.domain.order</a></dt>
 <dd>
@@ -567,7 +581,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Интерфейс для потокобезопасного репозитория заказов.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html" class="type-name-link" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a> - Enum Class in <a href="org/example/pizzeria/domain/order/package-summary.html">org.example.pizzeria.domain.order</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Перечисление, представляющее все возможные статусы заказа в системе.</div>
+</dd>
 <dt><a href="org/example/pizzeria/order/dto/OrderStatusResponse.html" class="type-name-link" title="class in org.example.pizzeria.order.dto">OrderStatusResponse</a> - Record Class in <a href="org/example/pizzeria/order/dto/package-summary.html">org.example.pizzeria.order.dto</a></dt>
 <dd>
 <div class="block">DTO для ответа на запрос статуса заказа.</div>
@@ -596,8 +612,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/order/service/impl/package-summary.html">org.example.pizzeria.order.service.impl</a> - package org.example.pizzeria.order.service.impl</dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/example/pizzeria/processing/config/package-summary.html">org.example.pizzeria.processing.config</a> - package org.example.pizzeria.processing.config</dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/delivery/package-summary.html">org.example.pizzeria.processing.delivery</a> - package org.example.pizzeria.processing.delivery</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/kitchen/package-summary.html">org.example.pizzeria.processing.kitchen</a> - package org.example.pizzeria.processing.kitchen</dt>
@@ -618,6 +632,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/shared/lifecycle/package-summary.html">org.example.pizzeria.shared.lifecycle</a> - package org.example.pizzeria.shared.lifecycle</dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/pizzeria/shared/utils/package-summary.html">org.example.pizzeria.shared.utils</a> - package org.example.pizzeria.shared.utils</dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
@@ -627,10 +643,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/domain/pizza/Pizza.html" class="type-name-link" title="class in org.example.pizzeria.domain.pizza">Pizza</a> - Class in <a href="org/example/pizzeria/domain/pizza/package-summary.html">org.example.pizzeria.domain.pizza</a></dt>
 <dd>
-<div class="block">Готовая пицца, предназначенная для хранения на складе.</div>
+<div class="block">Представляет готовую пиццу, предназначенную для хранения на складе.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/pizza/Pizza.html#%3Cinit%3E(org.example.pizzeria.domain.order.Order)" class="member-name-link">Pizza(Order)</a> - Constructor for class org.example.pizzeria.domain.pizza.<a href="org/example/pizzeria/domain/pizza/Pizza.html" title="class in org.example.pizzeria.domain.pizza">Pizza</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Создает объект пиццы на основе заказа.</div>
+</dd>
 <dt><a href="org/example/pizzeria/order/dto/CreateOrderRequest.html#pizzaDetails()" class="member-name-link">pizzaDetails()</a> - Method in record class org.example.pizzeria.order.dto.<a href="org/example/pizzeria/order/dto/CreateOrderRequest.html" title="class in org.example.pizzeria.order.dto">CreateOrderRequest</a></dt>
 <dd>
 <div class="block">Returns the value of the <a href="./org/example/pizzeria/order/dto/CreateOrderRequest.html#param-pizzaDetails"><code>pizzaDetails</code></a> record component.</div>
@@ -648,9 +666,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>PizzeriaConfig</code> record class.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" class="type-name-link" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a> - Record Class in <a href="org/example/pizzeria/config/package-summary.html">org.example.pizzeria.config</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Конфигурация для одного пекаря.</div>
+</dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" class="type-name-link" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a> - Record Class in <a href="org/example/pizzeria/config/package-summary.html">org.example.pizzeria.config</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Конфигурация для одного курьера.</div>
+</dd>
 <dt><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" class="type-name-link" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a> - Class in <a href="org/example/pizzeria/order/service/impl/package-summary.html">org.example.pizzeria.order.service.impl</a></dt>
 <dd>
 <div class="block">Реализация OrderAcceptor, которая помещает заказ в очередь.</div>
@@ -659,10 +681,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конструктор для внедрения зависимостей Spring.</div>
 </dd>
-<dt><a href="org/example/pizzeria/processing/config/ProcessingConfig.html" class="type-name-link" title="class in org.example.pizzeria.processing.config">ProcessingConfig</a> - Class in <a href="org/example/pizzeria/processing/config/package-summary.html">org.example.pizzeria.processing.config</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="org/example/pizzeria/processing/config/ProcessingConfig.html#%3Cinit%3E()" class="member-name-link">ProcessingConfig()</a> - Constructor for class org.example.pizzeria.processing.config.<a href="org/example/pizzeria/processing/config/ProcessingConfig.html" title="class in org.example.pizzeria.processing.config">ProcessingConfig</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html#put(org.example.pizzeria.domain.order.Order)" class="member-name-link">put(Order)</a> - Method in class org.example.pizzeria.processing.queue.impl.<a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/queue/OrderQueue.html#put(org.example.pizzeria.domain.order.Order)" class="member-name-link">put(Order)</a> - Method in interface org.example.pizzeria.processing.queue.<a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></dt>
@@ -678,18 +696,20 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:Q">Q</h2>
 <dl class="index">
-<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">queueSizeGauge(OrderQueue, MeterRegistry)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
+<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#queueSizeGauge(org.example.pizzeria.processing.queue.OrderQueue)" class="member-name-link">queueSizeGauge(OrderQueue)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера очереди заказов.</div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера очереди заказов.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="org/example/pizzeria/domain/order/OrderStatus.html#RECEIVED" class="member-name-link">RECEIVED</a> - Enum constant in enum class org.example.pizzeria.domain.order.<a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Заказ принят, но еще не в работе.</div>
+</dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#repositoryLogPath()" class="member-name-link">repositoryLogPath()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>repositoryLogPath</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-repositoryLogPath"><code>repositoryLogPath</code></a> record component.</div>
 </dd>
 <dt><a href="org/example/pizzeria/shared/exception/RestExceptionHandler.html" class="type-name-link" title="class in org.example.pizzeria.shared.exception">RestExceptionHandler</a> - Class in <a href="org/example/pizzeria/shared/exception/package-summary.html">org.example.pizzeria.shared.exception</a></dt>
 <dd>
@@ -697,6 +717,10 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="org/example/pizzeria/shared/exception/RestExceptionHandler.html#%3Cinit%3E()" class="member-name-link">RestExceptionHandler()</a> - Constructor for class org.example.pizzeria.shared.exception.<a href="org/example/pizzeria/shared/exception/RestExceptionHandler.html" title="class in org.example.pizzeria.shared.exception">RestExceptionHandler</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/pizzeria/shared/utils/LogRotator.html#rotate(java.nio.file.Path,long,boolean,java.lang.Runnable)" class="member-name-link">rotate(Path, long, boolean, Runnable)</a> - Method in class org.example.pizzeria.shared.utils.<a href="org/example/pizzeria/shared/utils/LogRotator.html" title="class in org.example.pizzeria.shared.utils">LogRotator</a></dt>
+<dd>
+<div class="block">Проверяет размер файла и выполняет ротацию, если он превышает лимит.</div>
+</dd>
 <dt><a href="org/example/pizzeria/processing/delivery/Courier.html#run()" class="member-name-link">run()</a> - Method in class org.example.pizzeria.processing.delivery.<a href="org/example/pizzeria/processing/delivery/Courier.html" title="class in org.example.pizzeria.processing.delivery">Courier</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/kitchen/Baker.html#run()" class="member-name-link">run()</a> - Method in class org.example.pizzeria.processing.kitchen.<a href="org/example/pizzeria/processing/kitchen/Baker.html" title="class in org.example.pizzeria.processing.kitchen">Baker</a></dt>
@@ -721,9 +745,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает текущее количество пицц на складе (приблизительное).</div>
 </dd>
 <dt><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html#startAccepting()" class="member-name-link">startAccepting()</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a></dt>
-<dd>
-<div class="block">Возобновляет прием заказов.</div>
-</dd>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/service/impl/WorkerManagerServiceImpl.html#startWorkers()" class="member-name-link">startWorkers()</a> - Method in class org.example.pizzeria.processing.service.impl.<a href="org/example/pizzeria/processing/service/impl/WorkerManagerServiceImpl.html" title="class in org.example.pizzeria.processing.service.impl">WorkerManagerServiceImpl</a></dt>
 <dd>
 <div class="block">Запускает потоки для всех работников после инициализации Spring контекста.</div>
@@ -741,9 +763,7 @@ loadScripts(document, 'script');</script>
 <dt><a href="org/example/pizzeria/processing/kitchen/Baker.html#stop()" class="member-name-link">stop()</a> - Method in class org.example.pizzeria.processing.kitchen.<a href="org/example/pizzeria/processing/kitchen/Baker.html" title="class in org.example.pizzeria.processing.kitchen">Baker</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html#stopAccepting()" class="member-name-link">stopAccepting()</a> - Method in class org.example.pizzeria.order.service.impl.<a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a></dt>
-<dd>
-<div class="block">Останавливает прием новых заказов.</div>
-</dd>
+<dd>&nbsp;</dd>
 <dt><a href="org/example/pizzeria/processing/service/impl/WorkerManagerServiceImpl.html#stopWorkers()" class="member-name-link">stopWorkers()</a> - Method in class org.example.pizzeria.processing.service.impl.<a href="org/example/pizzeria/processing/service/impl/WorkerManagerServiceImpl.html" title="class in org.example.pizzeria.processing.service.impl">WorkerManagerServiceImpl</a></dt>
 <dd>
 <div class="block">Останавливает все потоки работников перед уничтожением бина.</div>
@@ -820,15 +840,15 @@ the order they are declared.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#warehouseCapacity()" class="member-name-link">warehouseCapacity()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>warehouseCapacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-warehouseCapacity"><code>warehouseCapacity</code></a> record component.</div>
 </dd>
-<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse,io.micrometer.core.instrument.MeterRegistry)" class="member-name-link">warehouseSizeGauge(Warehouse, MeterRegistry)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
+<dt><a href="org/example/pizzeria/config/AppCoreConfig.html#warehouseSizeGauge(org.example.pizzeria.processing.warehouse.Warehouse)" class="member-name-link">warehouseSizeGauge(Warehouse)</a> - Method in class org.example.pizzeria.config.<a href="org/example/pizzeria/config/AppCoreConfig.html" title="class in org.example.pizzeria.config">AppCoreConfig</a></dt>
 <dd>
-<div class="block">Регистрирует метрику Gauge для отслеживания текущего размера склада пицц.</div>
+<div class="block">Регистрирует метрику (Gauge) для отслеживания текущего размера склада.</div>
 </dd>
 <dt><a href="org/example/pizzeria/domain/worker/Worker.html" class="type-name-link" title="interface in org.example.pizzeria.domain.worker">Worker</a> - Interface in <a href="org/example/pizzeria/domain/worker/package-summary.html">org.example.pizzeria.domain.worker</a></dt>
 <dd>
-<div class="block">Общий интерфейс для работников (Пекари, Курьеры).</div>
+<div class="block">Общий интерфейс для всех работников пиццерии (пекари, курьеры).</div>
 </dd>
 <dt><a href="org/example/pizzeria/processing/service/WorkerManagerService.html" class="type-name-link" title="interface in org.example.pizzeria.processing.service">WorkerManagerService</a> - Interface in <a href="org/example/pizzeria/processing/service/package-summary.html">org.example.pizzeria.processing.service</a></dt>
 <dd>
@@ -844,7 +864,7 @@ the order they are declared.</div>
 </dd>
 <dt><a href="org/example/pizzeria/config/PizzeriaConfig.html#workTimeMs()" class="member-name-link">workTimeMs()</a> - Method in record class org.example.pizzeria.config.<a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></dt>
 <dd>
-<div class="block">Returns the value of the <code>workTimeMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="./org/example/pizzeria/config/PizzeriaConfig.html#param-workTimeMs"><code>workTimeMs</code></a> record component.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>

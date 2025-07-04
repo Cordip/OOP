@@ -72,14 +72,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/processing/queue/impl/ConcurrentOrderQueue.html" title="class in org.example.pizzeria.processing.queue.impl">ConcurrentOrderQueue</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Потокобезопасная реализация очереди заказов <a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue"><code>OrderQueue</code></a>
- с ограниченной емкостью на основе <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html" title="class or interface in java.util" class="external-link"><code>LinkedList</code></a> и встроенных
- мониторов Java (synchronized, wait, notifyAll).</div>
+ с ограниченной емкостью.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/processing/warehouse/impl/ConcurrentWarehouse.html" title="class in org.example.pizzeria.processing.warehouse.impl">ConcurrentWarehouse</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Потокобезопасная реализация склада пицц <a href="org/example/pizzeria/processing/warehouse/Warehouse.html" title="interface in org.example.pizzeria.processing.warehouse"><code>Warehouse</code></a>
- с ограниченной емкостью на основе <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html" title="class or interface in java.util" class="external-link"><code>LinkedList</code></a> и встроенных
- мониторов Java (synchronized, wait, notifyAll).</div>
+ с ограниченной емкостью.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/processing/delivery/Courier.html" title="class in org.example.pizzeria.processing.delivery">Courier</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
@@ -101,63 +99,71 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Реализация репозитория заказов <a href="org/example/pizzeria/order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service"><code>OrderRepository</code></a> на основе файла.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/shared/utils/LogRotator.html" title="class in org.example.pizzeria.shared.utils">LogRotator</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Утилитарный класс для выполнения ротации лог-файлов по размеру.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Представляет заказ в пиццерии.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/order/service/OrderAcceptor.html" title="interface in org.example.pizzeria.order.service">OrderAcceptor</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/order/service/OrderAcceptor.html" title="interface in org.example.pizzeria.order.service">OrderAcceptor</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Интерфейс для компонента, отвечающего за прием нового заказа
  и его передачу в дальнейшую обработку (например, в очередь).</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/order/api/OrderController.html" title="class in org.example.pizzeria.order.api">OrderController</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/order/api/OrderController.html" title="class in org.example.pizzeria.order.api">OrderController</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">REST контроллер для управления заказами пиццы.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab5"><a href="org/example/pizzeria/order/exception/OrderNotFoundException.html" title="class in org.example.pizzeria.order.exception">OrderNotFoundException</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab5">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab5"><a href="org/example/pizzeria/order/exception/OrderNotFoundException.html" title="class in org.example.pizzeria.order.exception">OrderNotFoundException</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab5">
 <div class="block">Исключение, выбрасываемое, когда заказ с указанным ID не найден в репозитории.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/processing/queue/OrderQueue.html" title="interface in org.example.pizzeria.processing.queue">OrderQueue</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Интерфейс для потокобезопасной очереди заказов с ограниченной вместимостью.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/order/OrderRecoveryAccessor.html" title="class in org.example.pizzeria.domain.order">OrderRecoveryAccessor</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/order/OrderRecoveryAccessor.html" title="class in org.example.pizzeria.domain.order">OrderRecoveryAccessor</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Утилитарный класс, предоставляющий контролируемый доступ для создания
  и установки статуса объектов <a href="org/example/pizzeria/domain/order/Order.html" title="class in org.example.pizzeria.domain.order"><code>Order</code></a> ИСКЛЮЧИТЕЛЬНО в целях
  восстановления состояния из хранилища (например, при загрузке из лога репозиторием).</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab1">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/order/service/OrderRepository.html" title="interface in org.example.pizzeria.order.service">OrderRepository</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab1">
 <div class="block">Интерфейс для потокобезопасного репозитория заказов.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab3"><a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/order/dto/OrderStatusResponse.html" title="class in org.example.pizzeria.order.dto">OrderStatusResponse</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first even-row-color all-classes-table all-classes-table-tab3"><a href="org/example/pizzeria/domain/order/OrderStatus.html" title="enum class in org.example.pizzeria.domain.order">OrderStatus</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab3">
+<div class="block">Перечисление, представляющее все возможные статусы заказа в системе.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/order/dto/OrderStatusResponse.html" title="class in org.example.pizzeria.order.dto">OrderStatusResponse</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
 <div class="block">DTO для ответа на запрос статуса заказа.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/pizza/Pizza.html" title="class in org.example.pizzeria.domain.pizza">Pizza</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
-<div class="block">Готовая пицца, предназначенная для хранения на складе.</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/domain/pizza/Pizza.html" title="class in org.example.pizzeria.domain.pizza">Pizza</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Представляет готовую пиццу, предназначенную для хранения на складе.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/PizzeriaApplication.html" title="class in org.example.pizzeria">PizzeriaApplication</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/PizzeriaApplication.html" title="class in org.example.pizzeria">PizzeriaApplication</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
 <div class="block">Конфигурация пиццерии, загружаемая из application.properties с префиксом "pizzeria".</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.BakerConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.BakerConfig</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Конфигурация для одного пекаря.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="org/example/pizzeria/config/PizzeriaConfig.CourierConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig.CourierConfig</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Конфигурация для одного курьера.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/order/service/impl/PizzeriaOrderAcceptor.html" title="class in org.example.pizzeria.order.service.impl">PizzeriaOrderAcceptor</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Реализация OrderAcceptor, которая помещает заказ в очередь.</div>
 </div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/processing/config/ProcessingConfig.html" title="class in org.example.pizzeria.processing.config">ProcessingConfig</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="org/example/pizzeria/shared/exception/RestExceptionHandler.html" title="class in org.example.pizzeria.shared.exception">RestExceptionHandler</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Глобальный обработчик исключений для REST контроллеров.</div>
@@ -168,7 +174,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/domain/worker/Worker.html" title="interface in org.example.pizzeria.domain.worker">Worker</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab1">
-<div class="block">Общий интерфейс для работников (Пекари, Курьеры).</div>
+<div class="block">Общий интерфейс для всех работников пиццерии (пекари, курьеры).</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab1"><a href="org/example/pizzeria/processing/service/WorkerManagerService.html" title="interface in org.example.pizzeria.processing.service">WorkerManagerService</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab1">

@@ -92,12 +92,20 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-id">id</span></code> - Уникальный идентификатор курьера.</dd>
+<dd><code><span id="param-capacity">capacity</span></code> - Вместимость багажника курьера (кол-во пицц).</dd>
+<dd><code><span id="param-deliveryTimeMinMs">deliveryTimeMinMs</span></code> - Минимальное время доставки (мс).</dd>
+<dd><code><span id="param-deliveryTimeMaxMs">deliveryTimeMaxMs</span></code> - Максимальное время доставки (мс).</dd>
+</dl>
+<dl class="notes">
 <dt>Enclosing class:</dt>
 <dd><code><a href="PizzeriaConfig.html" title="class in org.example.pizzeria.config">PizzeriaConfig</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public static record </span><span class="element-name type-name-label">PizzeriaConfig.CourierConfig</span>(@jakarta.validation.constraints.Positive(message="Courier ID must be positive") int&nbsp;id, @jakarta.validation.constraints.Positive(message="Courier capacity must be positive") int&nbsp;capacity, @jakarta.validation.constraints.Positive(message="Courier minimum delivery time must be positive") int&nbsp;deliveryTimeMinMs, @jakarta.validation.constraints.Positive(message="Courier maximum delivery time must be positive") int&nbsp;deliveryTimeMaxMs)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
+<div class="block">Конфигурация для одного курьера.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -133,17 +141,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Courier capacity must be positive") int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#capacity()" class="member-name-link">capacity</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>capacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-capacity"><code>capacity</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Courier maximum delivery time must be positive") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deliveryTimeMaxMs()" class="member-name-link">deliveryTimeMaxMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>deliveryTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-deliveryTimeMaxMs"><code>deliveryTimeMaxMs</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Courier minimum delivery time must be positive") int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#deliveryTimeMinMs()" class="member-name-link">deliveryTimeMinMs</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>deliveryTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-deliveryTimeMinMs"><code>deliveryTimeMinMs</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -158,7 +166,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@jakarta.validation.constraints.Positive(message="Courier ID must be positive") int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#id()" class="member-name-link">id</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-id"><code>id</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -196,10 +204,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates an instance of a <code>CourierConfig</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>id</code> - the value for the <code>id</code> record component</dd>
-<dd><code>capacity</code> - the value for the <code>capacity</code> record component</dd>
-<dd><code>deliveryTimeMinMs</code> - the value for the <code>deliveryTimeMinMs</code> record component</dd>
-<dd><code>deliveryTimeMaxMs</code> - the value for the <code>deliveryTimeMaxMs</code> record component</dd>
+<dd><code>id</code> - the value for the <a href="#param-id"><code>id</code></a> record component</dd>
+<dd><code>capacity</code> - the value for the <a href="#param-capacity"><code>capacity</code></a> record component</dd>
+<dd><code>deliveryTimeMinMs</code> - the value for the <a href="#param-deliveryTimeMinMs"><code>deliveryTimeMinMs</code></a> record component</dd>
+<dd><code>deliveryTimeMaxMs</code> - the value for the <a href="#param-deliveryTimeMaxMs"><code>deliveryTimeMaxMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -257,10 +265,10 @@ loadScripts(document, 'script');</script>
 <h3>id</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Courier ID must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Courier ID must be positive") int</span>&nbsp;<span class="element-name">id</span>()</div>
-<div class="block">Returns the value of the <code>id</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-id"><code>id</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>id</code> record component</dd>
+<dd>the value of the <a href="#param-id"><code>id</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -269,10 +277,10 @@ loadScripts(document, 'script');</script>
 <h3>capacity</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Courier capacity must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Courier capacity must be positive") int</span>&nbsp;<span class="element-name">capacity</span>()</div>
-<div class="block">Returns the value of the <code>capacity</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-capacity"><code>capacity</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>capacity</code> record component</dd>
+<dd>the value of the <a href="#param-capacity"><code>capacity</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -281,10 +289,10 @@ loadScripts(document, 'script');</script>
 <h3>deliveryTimeMinMs</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Courier minimum delivery time must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Courier minimum delivery time must be positive") int</span>&nbsp;<span class="element-name">deliveryTimeMinMs</span>()</div>
-<div class="block">Returns the value of the <code>deliveryTimeMinMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-deliveryTimeMinMs"><code>deliveryTimeMinMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>deliveryTimeMinMs</code> record component</dd>
+<dd>the value of the <a href="#param-deliveryTimeMinMs"><code>deliveryTimeMinMs</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -293,10 +301,10 @@ loadScripts(document, 'script');</script>
 <h3>deliveryTimeMaxMs</h3>
 <div class="member-signature"><span class="annotations">@Positive(message="Courier maximum delivery time must be positive")
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type">@jakarta.validation.constraints.Positive(message="Courier maximum delivery time must be positive") int</span>&nbsp;<span class="element-name">deliveryTimeMaxMs</span>()</div>
-<div class="block">Returns the value of the <code>deliveryTimeMaxMs</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-deliveryTimeMaxMs"><code>deliveryTimeMaxMs</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>deliveryTimeMaxMs</code> record component</dd>
+<dd>the value of the <a href="#param-deliveryTimeMaxMs"><code>deliveryTimeMaxMs</code></a> record component</dd>
 </dl>
 </section>
 </li>

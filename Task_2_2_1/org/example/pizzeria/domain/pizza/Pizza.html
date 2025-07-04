@@ -92,7 +92,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Pizza</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Готовая пицца, предназначенная для хранения на складе.</div>
+<div class="block">Представляет готовую пиццу, предназначенную для хранения на складе.
+ <p>
+ Создается из объекта <a href="../order/Order.html" title="class in org.example.pizzeria.domain.order"><code>Order</code></a> после завершения этапа приготовления.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,7 +107,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.example.pizzeria.domain.order.Order)" class="member-name-link">Pizza</a><wbr>(<a href="../order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a>&nbsp;order)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает объект пиццы на основе заказа.</div>
+</div>
 </div>
 </section>
 </li>
@@ -156,6 +160,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(org.example.pizzeria.domain.order.Order)">
 <h3>Pizza</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Pizza</span><wbr><span class="parameters">(<a href="../order/Order.html" title="class in org.example.pizzeria.domain.order">Order</a>&nbsp;order)</span></div>
+<div class="block">Создает объект пиццы на основе заказа.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - заказ, из которого создается пицца. Не может быть null.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если order равен null.</dd>
+</dl>
 </section>
 </li>
 </ul>
