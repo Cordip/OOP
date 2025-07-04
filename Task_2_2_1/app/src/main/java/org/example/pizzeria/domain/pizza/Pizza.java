@@ -4,19 +4,26 @@ import java.util.Objects;
 import org.example.pizzeria.domain.order.Order;
 
 /**
- * Готовая пицца, предназначенная для хранения на складе.
+ * Представляет готовую пиццу, предназначенную для хранения на складе.
+ * <p>
+ * Создается из объекта {@link Order} после завершения этапа приготовления.
  */
 public class Pizza {
     private final int orderId;
     private final String pizzaDetails;
 
+    /**
+     * Создает объект пиццы на основе заказа.
+     *
+     * @param order заказ, из которого создается пицца. Не может быть null.
+     * @throws IllegalArgumentException если order равен null.
+     */
     public Pizza(Order order) {
         if (order == null) {
             throw new IllegalArgumentException("Order cannot be null when creating Pizza");
         }
         this.orderId = order.getId();
         this.pizzaDetails = order.getPizzaDetails();
-        // Статус заказа меняется на COOKED *после* успешного помещения пиццы на склад.
     }
 
     public int getOrderId() {

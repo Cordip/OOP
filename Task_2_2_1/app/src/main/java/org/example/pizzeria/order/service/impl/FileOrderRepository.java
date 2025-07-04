@@ -72,14 +72,14 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
     private final Map<Integer, Order> activeOrderCache = new HashMap<>();
     /** Кэш финальных статусов заказов (только статус). Ключ - ID заказа. */
     private final Map<Integer, OrderStatus> finalizedOrderStatusCache = new HashMap<>();
-    private final Object cacheLock = new Object(); // Блокировка для синхронизации доступа к кэшам
+    private final Object cacheLock = new Object();
 
     private PrintWriter logWriter;
-    private final Object fileLock = new Object(); // Блокировка для синхронизации доступа к файлу лога
+    private final Object fileLock = new Object();
     private boolean closed = false;
-    private final Object stateLock = new Object(); // Блокировка для управления состоянием загрузки
-    private volatile boolean isLoading = false; // Флаг, активный во время загрузки состояния из лога
-    private final AtomicInteger nextId = new AtomicInteger(1); // Потокобезопасный счетчик ID
+    private final Object stateLock = new Object();
+    private volatile boolean isLoading = false;
+    private final AtomicInteger nextId = new AtomicInteger(1);
 
     private final Counter addOrderCounter;
     private final Counter logStatusUpdateCounter;
@@ -137,7 +137,6 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
      * если размер превышает сконфигурированный лимит.
      */
     private void rotateLogFileIfNeeded() {
-        // TODO: Использовать значения из PizzeriaConfig для enabled и maxSizeMb
         boolean rotationEnabled = true;
         long maxSizeMb = 10;
 
@@ -368,9 +367,9 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
         event.put(EVENT_NEW_STATUS, newStatus.name());
 
         try {
-            logEvent(event); // Запись в лог
+            logEvent(event);
 
-            synchronized (cacheLock) { // Обновление кэшей
+            synchronized (cacheLock) {
                 if (newStatus.isFinal()) {
                     Order removedOrder = activeOrderCache.remove(orderId);
                     finalizedOrderStatusCache.put(orderId, newStatus);
@@ -451,7 +450,7 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
             Order order = activeOrderCache.get(orderId);
             if (order != null) {
                  log.trace("Order found in active cache.");
-                 return order; // TODO: Consider returning a copy for true isolation
+                 return order;
             }
 
             OrderStatus finalStatus = finalizedOrderStatusCache.get(orderId);
@@ -468,7 +467,6 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
     public Collection<Order> getAllOrders() {
         log.debug("Getting all active orders.");
         synchronized (cacheLock) {
-            // TODO: Consider creating copies of Order objects for full isolation.
             return new ArrayList<>(activeOrderCache.values());
         }
     }

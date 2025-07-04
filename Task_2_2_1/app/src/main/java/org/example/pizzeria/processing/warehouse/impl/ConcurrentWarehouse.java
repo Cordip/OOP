@@ -2,11 +2,9 @@ package org.example.pizzeria.processing.warehouse.impl;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-
 import org.example.pizzeria.config.PizzeriaConfig;
 import org.example.pizzeria.domain.pizza.Pizza;
 import org.example.pizzeria.processing.warehouse.Warehouse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +12,10 @@ import java.util.*;
 
 /**
  * Потокобезопасная реализация склада пицц {@link Warehouse}
- * с ограниченной емкостью на основе {@link LinkedList} и встроенных
- * мониторов Java (synchronized, wait, notifyAll).
- * Использует SLF4j для логирования и Micrometer для метрик.
+ * с ограниченной емкостью.
+ * <p>
+ * Использует {@link LinkedList} и встроенный монитор Java
+ * ({@code synchronized}, {@code wait()}/{@code notifyAll()}) для потокобезопасности.
  */
 public class ConcurrentWarehouse implements Warehouse {
 
@@ -27,14 +26,15 @@ public class ConcurrentWarehouse implements Warehouse {
     private final Object lock = new Object(); // Монитор для синхронизации
 
     private final Counter putsCounter;
-    private final Counter takesCounter; // Общий счетчик успешно взятых пицц
+    private final Counter takesCounter;
     private final Counter putAttemptsCounter;
-    private final Counter takeAttemptsCounter; // Общий счетчик попыток взятия
+    private final Counter takeAttemptsCounter;
 
     /**
-     * Конструктор.
-     * @param config Конфигурация пиццерии.
-     * @param meterRegistry Реестр метрик Micrometer.
+     * Конструктор для создания склада.
+     *
+     * @param config        конфигурация пиццерии для определения вместимости.
+     * @param meterRegistry реестр для регистрации метрик Micrometer.
      */
     public ConcurrentWarehouse(PizzeriaConfig config, MeterRegistry meterRegistry) {
         Objects.requireNonNull(config, "PizzeriaConfig cannot be null");
@@ -57,10 +57,7 @@ public class ConcurrentWarehouse implements Warehouse {
 
     @Override
     public void put(Pizza pizza) throws InterruptedException {
-        if (pizza == null) {
-            log.warn("Attempted to put a null pizza into the warehouse. Ignoring.");
-            return;
-        }
+        Objects.requireNonNull(pizza, "Cannot put a null pizza into the warehouse");
         putAttemptsCounter.increment();
 
         synchronized (lock) {
@@ -69,7 +66,7 @@ public class ConcurrentWarehouse implements Warehouse {
                 lock.wait();
 
                 if (Thread.currentThread().isInterrupted()) {
-                    log.warn("Thread interrupted while waiting to put pizza for order {}. Throwing InterruptedException.", pizza.getOrderId());
+                    log.warn("Thread interrupted while waiting to put pizza for order {}.", pizza.getOrderId());
                     throw new InterruptedException("Interrupted while waiting to put in warehouse");
                 }
             }
@@ -84,7 +81,7 @@ public class ConcurrentWarehouse implements Warehouse {
     public List<Pizza> take(int maxAmount) throws InterruptedException {
         if (maxAmount <= 0) {
             log.warn("Attempted to take non-positive amount of pizza: {}. Returning empty list.", maxAmount);
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
         takeAttemptsCounter.increment();
         List<Pizza> takenPizzas;
@@ -95,7 +92,7 @@ public class ConcurrentWarehouse implements Warehouse {
                 lock.wait();
 
                 if (Thread.currentThread().isInterrupted()) {
-                    log.warn("Thread interrupted while waiting to take pizzas. Throwing InterruptedException.");
+                    log.warn("Thread interrupted while waiting to take pizzas.");
                     throw new InterruptedException("Interrupted while waiting to take from warehouse");
                 }
             }
@@ -107,9 +104,9 @@ public class ConcurrentWarehouse implements Warehouse {
             }
 
             if (takeCount > 0) {
-                takesCounter.increment(takeCount); // Считаем количество успешно взятых ПИЦЦ
+                takesCounter.increment(takeCount);
                 log.trace("Courier took {} pizzas. Storage size: {}", takeCount, storage.size());
-                lock.notifyAll(); // Оповещаем ожидающие потоки
+                lock.notifyAll();
             } else {
                  log.warn("Warehouse was not empty, but took 0 pizzas (maxAmount: {})", maxAmount);
             }
@@ -121,7 +118,7 @@ public class ConcurrentWarehouse implements Warehouse {
     public int drainTo(Collection<? super Pizza> collection) {
         Objects.requireNonNull(collection, "Target collection cannot be null");
         takeAttemptsCounter.increment();
-        int numberOfElementsDrained = 0;
+        int numberOfElementsDrained;
 
         synchronized (lock) {
             if (collection == this.storage) {
@@ -136,13 +133,13 @@ public class ConcurrentWarehouse implements Warehouse {
                         log.warn("Target collection reported no change after addAll, but pizzas were present in the warehouse.");
                      }
                     storage.clear();
-                    takesCounter.increment(numberOfElementsDrained); // Считаем успешно взятые ПИЦЦЫ
+                    takesCounter.increment(numberOfElementsDrained);
                     log.debug("Drain complete. Warehouse size is now 0.");
-                    lock.notifyAll(); // Уведомляем потоки, ждущие места
+                    lock.notifyAll();
                 } catch (UnsupportedOperationException | ClassCastException |
                          NullPointerException | IllegalArgumentException e) {
-                    log.error("Error adding elements to target collection during drainTo: {}. Warehouse might be partially drained or inconsistent.", e.getMessage(), e);
-                    numberOfElementsDrained = 0; // Операция не удалась
+                    log.error("Error adding elements to target collection during drainTo: {}.", e.getMessage(), e);
+                    numberOfElementsDrained = 0;
                 }
             } else {
                 log.trace("drainTo called on empty warehouse.");

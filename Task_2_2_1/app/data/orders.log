@@ -8124,3 +8124,199 @@
 {"newStatus":"DELIVERED","orderId":1629,"eventType":"STATUS_UPDATE","timestamp":"2025-05-23T06:36:31.151319051Z"}
 {"newStatus":"DELIVERED","orderId":1628,"eventType":"STATUS_UPDATE","timestamp":"2025-05-23T06:36:33.962226952Z"}
 {"newStatus":"DELIVERED","orderId":1630,"eventType":"STATUS_UPDATE","timestamp":"2025-05-23T06:36:33.962746001Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:23.642324991Z","order":{"id":1631,"pizzaDetails":"Пепперони стресс-тест 0.18535296082527583","status":"RECEIVED"}}
+{"newStatus":"COOKING","orderId":1631,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:23.666478280Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:24.999767838Z","order":{"id":1632,"pizzaDetails":"Пепперони стресс-тест 0.4496397786600776","status":"RECEIVED"}}
+{"newStatus":"COOKING","orderId":1632,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:25.000954585Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:25.354729581Z","order":{"id":1633,"pizzaDetails":"Пепперони стресс-тест 0.09440328572285998","status":"RECEIVED"}}
+{"newStatus":"COOKING","orderId":1633,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:25.355552485Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:25.526739633Z","order":{"id":1634,"pizzaDetails":"Пепперони стресс-тест 0.33743895674433266","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:26.578362958Z","order":{"id":1635,"pizzaDetails":"Пепперони стресс-тест 0.9194981490588352","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1631,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:26.622456019Z"}
+{"newStatus":"COOKING","orderId":1634,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:26.623337824Z"}
+{"newStatus":"DELIVERING","orderId":1631,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:26.623629080Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:27.262691418Z","order":{"id":1636,"pizzaDetails":"Пепперони стресс-тест 0.953036835965416","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1632,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:27.394720102Z"}
+{"newStatus":"DELIVERING","orderId":1632,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:27.394956476Z"}
+{"newStatus":"COOKING","orderId":1635,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:27.395679713Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:27.661461276Z","order":{"id":1637,"pizzaDetails":"Пепперони стресс-тест 0.24736983620535907","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:27.959504592Z","order":{"id":1638,"pizzaDetails":"Пепперони стресс-тест 0.9041117499865371","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:28.156835031Z","order":{"id":1639,"pizzaDetails":"Пепперони стресс-тест 0.3982238472517573","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:28.643833811Z","order":{"id":1640,"pizzaDetails":"Пепперони стресс-тест 0.7790328514148039","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:29.378274654Z","order":{"id":1641,"pizzaDetails":"Пепперони стресс-тест 0.544169032713088","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1635,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.461110527Z"}
+{"newStatus":"COOKING","orderId":1636,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.461765657Z"}
+{"newStatus":"COOKED","orderId":1633,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.467374560Z"}
+{"newStatus":"COOKING","orderId":1637,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.467998922Z"}
+{"newStatus":"COOKED","orderId":1634,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.677818734Z"}
+{"newStatus":"COOKING","orderId":1638,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.678792271Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:29.736424195Z","order":{"id":1642,"pizzaDetails":"Пепперони стресс-тест 0.06837094090979406","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1631,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.752843572Z"}
+{"newStatus":"DELIVERING","orderId":1635,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.753615220Z"}
+{"newStatus":"DELIVERING","orderId":1633,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:29.753916295Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:29.930377396Z","order":{"id":1643,"pizzaDetails":"Пепперони стресс-тест 0.1288567352949771","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:30.388492671Z","order":{"id":1644,"pizzaDetails":"Пепперони стресс-тест 0.06469366066065793","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:30.447436556Z","order":{"id":1645,"pizzaDetails":"Пепперони стресс-тест 0.0746805758103897","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:30.776624387Z","order":{"id":1646,"pizzaDetails":"Пепперони стресс-тест 0.15001922497220893","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:30.817253118Z","order":{"id":1647,"pizzaDetails":"Пепперони стресс-тест 0.07788183655825205","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1632,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:31.096691513Z"}
+{"newStatus":"DELIVERING","orderId":1634,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:31.097491635Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:31.315572726Z","order":{"id":1648,"pizzaDetails":"Пепперони стресс-тест 0.7061497197266954","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:31.467605632Z","order":{"id":1649,"pizzaDetails":"Пепперони стресс-тест 0.9995931296377264","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1636,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:31.642318112Z"}
+{"newStatus":"COOKING","orderId":1639,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:31.642868525Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:31.765083565Z","order":{"id":1650,"pizzaDetails":"Пепперони стресс-тест 0.7835880218580562","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:32.204831876Z","order":{"id":1651,"pizzaDetails":"Пепперони стресс-тест 0.3567235922031242","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:32.266485034Z","order":{"id":1652,"pizzaDetails":"Пепперони стресс-тест 0.09604636913289467","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1638,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.363902447Z"}
+{"newStatus":"COOKING","orderId":1640,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.364594926Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:32.571318457Z","order":{"id":1653,"pizzaDetails":"Пепперони стресс-тест 0.9174928601852295","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1635,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.824356697Z"}
+{"newStatus":"DELIVERED","orderId":1633,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.824809286Z"}
+{"newStatus":"DELIVERING","orderId":1636,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.825250925Z"}
+{"newStatus":"DELIVERING","orderId":1638,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:32.825535639Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:32.893880133Z","order":{"id":1654,"pizzaDetails":"Пепперони стресс-тест 0.19062638523542946","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:33.170908265Z","order":{"id":1655,"pizzaDetails":"Пепперони стресс-тест 0.5848213414052881","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:33.345556744Z","order":{"id":1656,"pizzaDetails":"Пепперони стресс-тест 0.3832346219953583","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1637,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:33.596091867Z"}
+{"newStatus":"COOKING","orderId":1641,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:33.596665694Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:33.776585473Z","order":{"id":1657,"pizzaDetails":"Пепперони стресс-тест 0.09053866757708723","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:33.841191953Z","order":{"id":1658,"pizzaDetails":"Пепперони стресс-тест 0.3573739879784765","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1639,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:33.862717Z"}
+{"newStatus":"COOKING","orderId":1642,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:33.863323658Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:33.965010130Z","order":{"id":1659,"pizzaDetails":"Пепперони стресс-тест 0.08710589395484925","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:34.120281422Z","order":{"id":1660,"pizzaDetails":"Пепперони стресс-тест 0.8495779709559093","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1634,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:34.125382974Z"}
+{"newStatus":"DELIVERING","orderId":1637,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:34.126021932Z"}
+{"newStatus":"DELIVERING","orderId":1639,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:34.126517001Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:34.472706228Z","order":{"id":1661,"pizzaDetails":"Пепперони стресс-тест 0.1214515932478479","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:34.481347541Z","order":{"id":1662,"pizzaDetails":"Пепперони стресс-тест 0.3844438654312481","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:35.049478722Z","order":{"id":1663,"pizzaDetails":"Пепперони стресс-тест 0.008078483587796382","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1640,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:35.537546159Z"}
+{"newStatus":"COOKING","orderId":1643,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:35.538122290Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:35.597645362Z","order":{"id":1664,"pizzaDetails":"Пепперони стресс-тест 0.613335081908491","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1642,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.117445890Z"}
+{"newStatus":"COOKING","orderId":1644,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.117949124Z"}
+{"newStatus":"DELIVERED","orderId":1636,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.249418937Z"}
+{"newStatus":"DELIVERED","orderId":1638,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.249960052Z"}
+{"newStatus":"DELIVERING","orderId":1640,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.250507249Z"}
+{"newStatus":"DELIVERING","orderId":1642,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:36.250687437Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:36.884427414Z","order":{"id":1665,"pizzaDetails":"Пепперони стресс-тест 0.6943621599353375","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1641,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:37.009718324Z"}
+{"newStatus":"COOKING","orderId":1645,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:37.010413899Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:37.277595563Z","order":{"id":1666,"pizzaDetails":"Пепперони стресс-тест 0.8175720376116175","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:37.555387295Z","order":{"id":1667,"pizzaDetails":"Пепперони стресс-тест 0.10244101914169285","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:37.629649551Z","order":{"id":1668,"pizzaDetails":"Пепперони стресс-тест 0.3656354703877034","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:38.053153318Z","order":{"id":1669,"pizzaDetails":"Пепперони стресс-тест 0.5376880755785781","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1637,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.191724454Z"}
+{"newStatus":"DELIVERED","orderId":1639,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.192142619Z"}
+{"newStatus":"DELIVERING","orderId":1641,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.192549492Z"}
+{"newStatus":"COOKED","orderId":1644,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.238673623Z"}
+{"newStatus":"COOKING","orderId":1646,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.239173040Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:38.261678907Z","order":{"id":1670,"pizzaDetails":"Пепперони стресс-тест 0.7326204903345293","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1640,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.319386663Z"}
+{"newStatus":"DELIVERED","orderId":1642,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.319757609Z"}
+{"newStatus":"DELIVERING","orderId":1644,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.320085714Z"}
+{"newStatus":"COOKED","orderId":1643,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.533874639Z"}
+{"newStatus":"COOKING","orderId":1647,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:38.534332819Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:39.209231027Z","order":{"id":1671,"pizzaDetails":"Пепперони стресс-тест 0.794422292744265","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:40.116567318Z","order":{"id":1672,"pizzaDetails":"Пепперони стресс-тест 0.06467360771395984","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1645,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:40.388268961Z"}
+{"newStatus":"COOKING","orderId":1648,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:40.388728564Z"}
+{"newStatus":"COOKED","orderId":1646,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:40.642959868Z"}
+{"newStatus":"COOKING","orderId":1649,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:40.643454106Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:40.788279205Z","order":{"id":1673,"pizzaDetails":"Пепперони стресс-тест 0.5203386219394959","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:40.821507961Z","order":{"id":1674,"pizzaDetails":"Пепперони стресс-тест 0.9009990702856043","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1647,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:41.026788862Z"}
+{"newStatus":"COOKING","orderId":1650,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:41.027110135Z"}
+{"newStatus":"DELIVERED","orderId":1644,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:41.447747791Z"}
+{"newStatus":"DELIVERING","orderId":1643,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:41.448299105Z"}
+{"newStatus":"DELIVERING","orderId":1645,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:41.448967399Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:42.094374501Z","order":{"id":1675,"pizzaDetails":"Пепперони стресс-тест 0.5738869611148331","status":"RECEIVED"}}
+{"newStatus":"DELIVERED","orderId":1641,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:42.183116233Z"}
+{"newStatus":"DELIVERING","orderId":1646,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:42.183517957Z"}
+{"newStatus":"DELIVERING","orderId":1647,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:42.183669150Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:42.368061959Z","order":{"id":1676,"pizzaDetails":"Пепперони стресс-тест 0.9652476535438916","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:42.512424009Z","order":{"id":1677,"pizzaDetails":"Пепперони стресс-тест 0.4901646907075783","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:42.598541788Z","order":{"id":1678,"pizzaDetails":"Пепперони стресс-тест 0.1588659652832921","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1649,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:43.015009028Z"}
+{"newStatus":"COOKING","orderId":1651,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:43.015501452Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:43.895369279Z","order":{"id":1679,"pizzaDetails":"Пепперони стресс-тест 0.1795602398725217","status":"RECEIVED"}}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:21:43.946829331Z","order":{"id":1680,"pizzaDetails":"Пепперони стресс-тест 0.8094172213066655","status":"RECEIVED"}}
+{"newStatus":"COOKED","orderId":1650,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.126945805Z"}
+{"newStatus":"COOKING","orderId":1652,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.127534179Z"}
+{"newStatus":"DELIVERED","orderId":1643,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.129517270Z"}
+{"newStatus":"DELIVERED","orderId":1645,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.129766377Z"}
+{"newStatus":"DELIVERING","orderId":1649,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.130052755Z"}
+{"newStatus":"DELIVERING","orderId":1650,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.130250235Z"}
+{"newStatus":"COOKED","orderId":1648,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.374628771Z"}
+{"newStatus":"COOKING","orderId":1653,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:44.375402302Z"}
+{"newStatus":"COOKED","orderId":1651,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.147102677Z"}
+{"newStatus":"COOKING","orderId":1654,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.148245602Z"}
+{"newStatus":"DELIVERED","orderId":1646,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.188302008Z"}
+{"newStatus":"DELIVERED","orderId":1647,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.188847862Z"}
+{"newStatus":"DELIVERING","orderId":1648,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.189262199Z"}
+{"newStatus":"DELIVERING","orderId":1651,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:45.189496719Z"}
+{"newStatus":"COOKED","orderId":1652,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:46.642388849Z"}
+{"newStatus":"COOKING","orderId":1655,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:46.642835477Z"}
+{"newStatus":"COOKED","orderId":1654,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.167171642Z"}
+{"newStatus":"COOKING","orderId":1656,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.167513774Z"}
+{"newStatus":"DELIVERED","orderId":1649,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.324873800Z"}
+{"newStatus":"DELIVERED","orderId":1650,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.325248493Z"}
+{"newStatus":"DELIVERING","orderId":1652,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.325492701Z"}
+{"newStatus":"DELIVERING","orderId":1654,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:47.325625581Z"}
+{"newStatus":"COOKED","orderId":1653,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:48.086983365Z"}
+{"newStatus":"COOKING","orderId":1657,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:48.087566419Z"}
+{"newStatus":"DELIVERED","orderId":1648,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:48.943443605Z"}
+{"newStatus":"DELIVERED","orderId":1651,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:48.943829519Z"}
+{"newStatus":"DELIVERING","orderId":1653,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:48.944158707Z"}
+{"newStatus":"COOKED","orderId":1655,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:49.547772253Z"}
+{"newStatus":"COOKING","orderId":1658,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:49.549030573Z"}
+{"newStatus":"COOKED","orderId":1656,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:49.604341721Z"}
+{"newStatus":"COOKING","orderId":1663,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:49.604964329Z"}
+{"newStatus":"DELIVERED","orderId":1652,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:50.731739151Z"}
+{"newStatus":"DELIVERED","orderId":1654,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:50.732207139Z"}
+{"newStatus":"DELIVERING","orderId":1655,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:50.732620705Z"}
+{"newStatus":"DELIVERING","orderId":1656,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:50.732861106Z"}
+{"newStatus":"COOKED","orderId":1657,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:51.571691472Z"}
+{"newStatus":"COOKING","orderId":1664,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:51.572502474Z"}
+{"newStatus":"COOKED","orderId":1663,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:51.962648942Z"}
+{"newStatus":"COOKING","orderId":1665,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:51.963422182Z"}
+{"newStatus":"DELIVERED","orderId":1653,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:52.149940976Z"}
+{"newStatus":"DELIVERING","orderId":1657,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:52.151797870Z"}
+{"newStatus":"DELIVERING","orderId":1663,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:52.152303659Z"}
+{"newStatus":"COOKED","orderId":1658,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:52.270644985Z"}
+{"newStatus":"COOKING","orderId":1669,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:52.273293985Z"}
+{"newStatus":"DELIVERED","orderId":1655,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:53.617768948Z"}
+{"newStatus":"DELIVERED","orderId":1656,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:53.618526188Z"}
+{"newStatus":"DELIVERING","orderId":1658,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:53.618884200Z"}
+{"newStatus":"COOKED","orderId":1665,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:54.049896170Z"}
+{"newStatus":"COOKING","orderId":1670,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:54.050524068Z"}
+{"newStatus":"COOKED","orderId":1669,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:54.959171231Z"}
+{"newStatus":"COOKING","orderId":1672,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:54.959551885Z"}
+{"newStatus":"DELIVERED","orderId":1657,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.028599555Z"}
+{"newStatus":"DELIVERED","orderId":1663,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.028977434Z"}
+{"newStatus":"DELIVERING","orderId":1665,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.029444110Z"}
+{"newStatus":"DELIVERING","orderId":1669,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.029686144Z"}
+{"newStatus":"COOKED","orderId":1664,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.328958398Z"}
+{"newStatus":"COOKING","orderId":1662,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:55.329469967Z"}
+{"newStatus":"DELIVERED","orderId":1658,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:56.249691785Z"}
+{"newStatus":"DELIVERING","orderId":1664,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:56.250288835Z"}
+{"newStatus":"COOKED","orderId":1670,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:56.311809713Z"}
+{"newStatus":"COOKING","orderId":1674,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:56.312339116Z"}
+{"newStatus":"DISCARDED","orderId":1662,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.372168137Z"}
+{"newStatus":"DISCARDED","orderId":1674,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.372271170Z"}
+{"newStatus":"DISCARDED","orderId":1672,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.372461838Z"}
+{"newStatus":"DISCARDED","orderId":1664,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.372661422Z"}
+{"newStatus":"DISCARDED","orderId":1665,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.373138908Z"}
+{"newStatus":"DISCARDED","orderId":1669,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:21:57.373970368Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:29:47.488896007Z","order":{"id":1681,"pizzaDetails":"Пепперони с двойным сыром","status":"RECEIVED"}}
+{"newStatus":"COOKING","orderId":1681,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:29:47.508892062Z"}
+{"newStatus":"COOKED","orderId":1681,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:29:49.738149029Z"}
+{"newStatus":"DELIVERING","orderId":1681,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:29:49.739625426Z"}
+{"newStatus":"DELIVERED","orderId":1681,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:29:52.732742472Z"}
+{"eventType":"CREATE","timestamp":"2025-07-04T02:30:04.184138655Z","order":{"id":1682,"pizzaDetails":"Пепперони с двойным сыром","status":"RECEIVED"}}
+{"newStatus":"COOKING","orderId":1682,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:30:04.185684421Z"}
+{"newStatus":"COOKED","orderId":1682,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:30:05.895453243Z"}
+{"newStatus":"DELIVERING","orderId":1682,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:30:05.895638913Z"}
+{"newStatus":"DELIVERED","orderId":1682,"eventType":"STATUS_UPDATE","timestamp":"2025-07-04T02:30:08.477049514Z"}

@@ -34,9 +34,9 @@ public class Baker implements Runnable, Worker {
     private final Warehouse warehouse;
     private final OrderRepository repository;
 
-    private volatile boolean running = true; // Флаг для грациозной остановки
+    private volatile boolean running = true;
 
-    private final double masteryFactor; // Предрасчитанный фактор мастерства
+    private final double masteryFactor;
 
     public Baker(int id,
                  PizzeriaConfig.BakerConfig bakerConfig,
@@ -70,12 +70,12 @@ public class Baker implements Runnable, Worker {
 
                 try {
                     log.debug("Baker {} waiting for order...", id);
-                    currentOrder = orderQueue.take(); // Блокирующий вызов
+                    currentOrder = orderQueue.take();
 
-                    MDC.put(MDC_ORDER_ID_KEY, String.valueOf(currentOrder.getId())); // MDC СРАЗУ после получения заказа
+                    MDC.put(MDC_ORDER_ID_KEY, String.valueOf(currentOrder.getId()));
                     log.info("Baker {} took order. Queue size: {}", id, orderQueue.size());
 
-                    if (currentOrder.moveToNextStatus()) { // Переход в COOKING
+                    if (currentOrder.moveToNextStatus()) {
                         try {
                             repository.logStatusUpdate(currentOrder.getId(), currentOrder.getStatus());
                             log.info("Status logged as COOKING.");
@@ -92,15 +92,15 @@ public class Baker implements Runnable, Worker {
 
                     long cookTime = calculateCookTime(currentOrder);
                     log.info("Baker {} started cooking. Estimated time: {}ms", id, cookTime);
-                    TimeUnit.MILLISECONDS.sleep(cookTime); // Может бросить InterruptedException
+                    TimeUnit.MILLISECONDS.sleep(cookTime);
 
                     Pizza pizza = new Pizza(currentOrder);
 
                     log.info("Baker {} finished cooking. Putting pizza on warehouse...", id);
-                    warehouse.put(pizza); // Блокирующий вызов
+                    warehouse.put(pizza);
                     log.info("Baker {} put pizza on warehouse. Warehouse size: {}", id, warehouse.size());
 
-                    if (currentOrder.moveToNextStatus()) { // Переход в COOKED
+                    if (currentOrder.moveToNextStatus()) {
                         try {
                             repository.logStatusUpdate(currentOrder.getId(), currentOrder.getStatus());
                             log.info("Status logged as COOKED.");
@@ -120,7 +120,7 @@ public class Baker implements Runnable, Worker {
                 } catch (InterruptedException e) {
                     log.warn("Baker {} interrupted during order processing.", id);
                     if (currentOrder != null) {
-                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(currentOrder.getId())); // MDC для логов отмены
+                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(currentOrder.getId()));
                         log.warn("Baker {} discarding incomplete order due to interruption.", id);
                         handleDiscard(currentOrder);
                     }
@@ -134,18 +134,18 @@ public class Baker implements Runnable, Worker {
                          handleDiscard(currentOrder);
                     }
                 } finally {
-                    if (currentOrder != null) { // Очищаем MDC после обработки заказа
+                    if (currentOrder != null) {
                         log.trace("Clearing MDC for order {}", currentOrder.getId());
                     } else {
                          log.trace("Clearing MDC (no active order)");
                     }
-                    MDC.remove(MDC_ORDER_ID_KEY); // Всегда очищаем
+                    MDC.remove(MDC_ORDER_ID_KEY);
                     currentOrder = null;
                 }
             }
         } finally {
              log.info("Baker {} run loop finished.", id);
-             MDC.clear(); // Очистка MDC при завершении потока
+             MDC.clear();
         }
     }
 
@@ -156,7 +156,7 @@ public class Baker implements Runnable, Worker {
      */
     private void handleDiscard(Order orderToDiscard) {
         if (orderToDiscard == null) return;
-        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderToDiscard.getId())); // MDC для операции discard
+        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderToDiscard.getId()));
         try {
             log.warn("Handling discard.");
             if (orderToDiscard.discard()) {
@@ -170,7 +170,7 @@ public class Baker implements Runnable, Worker {
                 log.warn("Order was already discarded or in final state when trying to handle discard.");
             }
         } finally {
-            MDC.remove(MDC_ORDER_ID_KEY); // Очищаем MDC после операции discard
+            MDC.remove(MDC_ORDER_ID_KEY);
         }
     }
 
@@ -185,7 +185,7 @@ public class Baker implements Runnable, Worker {
          int bakerBaseTime = (minBase == maxBase) ? minBase : ThreadLocalRandom.current().nextInt(minBase, maxBase + 1);
 
          long rawTime = bakerBaseTime + ingredientTime;
-         long finalCookTime = Math.max(100L, (long) (rawTime * this.masteryFactor)); // Минимум 100мс
+         long finalCookTime = Math.max(100L, (long) (rawTime * this.masteryFactor));
 
          log.debug("Calculated cook time: base={}, ingredient={}, raw={}, masteryFactor={:.2f}, final={}ms",
                    bakerBaseTime, ingredientTime, rawTime, masteryFactor, finalCookTime);
@@ -197,7 +197,7 @@ public class Baker implements Runnable, Worker {
      */
      private int getComplexityUnits(Order order) {
           if (order == null || order.getPizzaDetails() == null) { return 1; }
-          return Math.max(1, order.getPizzaDetails().length() / 5); // Пример: сложность = длина описания / 5
+          return Math.max(1, order.getPizzaDetails().length() / 5);
      }
 
     @Override

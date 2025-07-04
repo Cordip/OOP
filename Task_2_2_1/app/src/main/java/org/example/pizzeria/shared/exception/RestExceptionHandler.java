@@ -10,7 +10,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-// import org.springframework.web.context.request.WebRequest; // Альтернатива HttpServletRequest, не используется
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,25 +91,24 @@ public class RestExceptionHandler {
                 Instant.now(),
                 HttpStatus.SERVICE_UNAVAILABLE.value(),
                 HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase(),
-                ex.getMessage(), // Сообщение из IllegalStateException может быть информативным
+                ex.getMessage(),
                 request.getRequestURI());
         return new ResponseEntity<>(errorResponse, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
      @ExceptionHandler(InterruptedException.class)
      public ResponseEntity<ErrorResponse> handleInterruptedException(InterruptedException ex, HttpServletRequest request) {
-         Thread.currentThread().interrupt(); // Восстанавливаем флаг прерывания
+         Thread.currentThread().interrupt();
          log.warn("Request interrupted: {} for request: {}", ex.getMessage(), request.getRequestURI());
          ErrorResponse errorResponse = new ErrorResponse(
                  Instant.now(),
-                 HttpStatus.SERVICE_UNAVAILABLE.value(), // Сервис в процессе остановки
+                 HttpStatus.SERVICE_UNAVAILABLE.value(),
                  HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase(),
                  "The service is shutting down or the request was interrupted.",
                  request.getRequestURI());
          return new ResponseEntity<>(errorResponse, HttpStatus.SERVICE_UNAVAILABLE);
      }
 
-    // Обработка всех остальных непредвиденных исключений
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request) {
         log.error("Unhandled exception: {} for request: {}", ex.getMessage(), request.getRequestURI(), ex);
@@ -118,7 +116,7 @@ public class RestExceptionHandler {
                 Instant.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                "An unexpected error occurred: " + ex.getClass().getSimpleName(), // Не выводим детали исключения клиенту
+                "An unexpected error occurred: " + ex.getClass().getSimpleName(),
                 request.getRequestURI());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }

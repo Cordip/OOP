@@ -32,10 +32,9 @@ public class ApplicationLifecycleManager implements ApplicationListener<ContextR
             runnable -> {
                 Thread thread = Executors.defaultThreadFactory().newThread(runnable);
                 thread.setName("AppShutdownScheduler");
-                thread.setDaemon(false); // Не демон, чтобы гарантировать выполнение
+                thread.setDaemon(false);
                 return thread;
             });
-    // Флаг, чтобы планировщик сработал только один раз
     private final AtomicBoolean shutdownScheduled = new AtomicBoolean(false);
 
     public ApplicationLifecycleManager(PizzeriaConfig config, ApplicationContext applicationContext) {
@@ -46,7 +45,6 @@ public class ApplicationLifecycleManager implements ApplicationListener<ContextR
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        // Убедимся, что это событие корневого контекста и планировщик еще не запускался
         if (event.getApplicationContext().equals(this.applicationContext) &&
             shutdownScheduled.compareAndSet(false, true)) {
 
@@ -65,14 +63,13 @@ public class ApplicationLifecycleManager implements ApplicationListener<ContextR
     private void initiateShutdown() {
         log.info("Scheduled work time ({} ms) elapsed. Initiating application shutdown...", config.workTimeMs());
         try {
-            int exitCode = SpringApplication.exit(applicationContext, () -> 0); // Код 0 для успешного завершения
+            int exitCode = SpringApplication.exit(applicationContext, () -> 0);
             log.info("SpringApplication.exit called. Exiting with code {}.", exitCode);
-            // System.exit(exitCode); // Обычно не требуется, exit() должен завершать
         } catch (Exception e) {
             log.error("Error during scheduled shutdown initiation. Forcing exit.", e);
-            System.exit(1); // Принудительный выход с кодом ошибки
+            System.exit(1);
         } finally {
-             shutdownScheduler(); // Останавливаем планировщик после попытки завершения
+             shutdownScheduler();
         }
     }
 
@@ -86,7 +83,7 @@ public class ApplicationLifecycleManager implements ApplicationListener<ContextR
              log.info("Shutting down the application shutdown scheduler.");
              scheduler.shutdown();
              try {
-                  if (!scheduler.awaitTermination(2, TimeUnit.SECONDS)) { // Даем время на завершение
+                  if (!scheduler.awaitTermination(2, TimeUnit.SECONDS)) {
                        log.warn("Shutdown scheduler did not terminate gracefully after 2 seconds. Forcing shutdown.");
                        scheduler.shutdownNow();
                   }

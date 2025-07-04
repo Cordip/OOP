@@ -22,97 +22,72 @@ import java.util.Objects;
 
 /**
  * Основной конфигурационный класс Spring.
- * Включает загрузку свойств из PizzeriaConfig и определяет бины
- * для основных компонентов симуляции (очередь, склад), списки работников
- * и регистрирует метрики для наблюдаемости.
+ * <p>
+ * Определяет и настраивает ключевые бины приложения, такие как очередь заказов,
+ * склад, списки работников (пекарей и курьеров), а также регистрирует
+ * метрики для мониторинга.
  */
 @Configuration
-@EnableConfigurationProperties(PizzeriaConfig.class) // Активирует @ConfigurationProperties для PizzeriaConfig
+@EnableConfigurationProperties(PizzeriaConfig.class)
 public class AppCoreConfig {
 
     private final PizzeriaConfig config;
-    private final MeterRegistry meterRegistry;
 
     @Autowired
-    public AppCoreConfig(PizzeriaConfig config, MeterRegistry meterRegistry) {
+    public AppCoreConfig(PizzeriaConfig config) {
         this.config = Objects.requireNonNull(config, "PizzeriaConfig cannot be null");
-        this.meterRegistry = Objects.requireNonNull(meterRegistry, "MeterRegistry cannot be null");
-    }
-
-    // --- Компоненты ядра (Очередь, Склад) ---
-    // Репозиторий создается через @Repository
-
-    /**
-     * Создает бин потокобезопасной очереди заказов с ограниченной емкостью.
-     * Передает MeterRegistry для внутренних счетчиков.
-     */
-    @Bean
-    public OrderQueue concurrentOrderQueue() {
-        try {
-            return new ConcurrentOrderQueue(config, meterRegistry);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create ConcurrentOrderQueue bean", e);
-        }
     }
 
     /**
-     * Создает бин потокобезопасного склада пицц с ограниченной емкостью.
-     * Передает MeterRegistry для внутренних счетчиков.
+     * Создает бин потокобезопасной очереди заказов.
+     * @param meterRegistry Реестр для регистрации внутренних метрик очереди.
+     * @return Экземпляр {@link OrderQueue}.
      */
     @Bean
-    public Warehouse concurrentWarehouse() {
-        try {
-            return new ConcurrentWarehouse(config, meterRegistry);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create ConcurrentWarehouse bean", e);
-        }
+    public OrderQueue concurrentOrderQueue(MeterRegistry meterRegistry) {
+        return new ConcurrentOrderQueue(config, meterRegistry);
     }
 
-    // --- Метрики для Очереди и Склада (Gauge) ---
-
     /**
-     * Регистрирует метрику Gauge для отслеживания текущего размера очереди заказов.
-     * Использует MeterBinder для чистой регистрации.
-     *
-     * @param orderQueue    Бин очереди.
-     * @param meterRegistry Реестр метрик.
-     * @return MeterBinder для регистрации метрики.
+     * Создает бин потокобезопасного склада готовых пицц.
+     * @param meterRegistry Реестр для регистрации внутренних метрик склада.
+     * @return Экземпляр {@link Warehouse}.
      */
     @Bean
-    public MeterBinder queueSizeGauge(OrderQueue orderQueue, MeterRegistry meterRegistry) {
+    public Warehouse concurrentWarehouse(MeterRegistry meterRegistry) {
+        return new ConcurrentWarehouse(config, meterRegistry);
+    }
+
+    /**
+     * Регистрирует метрику (Gauge) для отслеживания текущего размера очереди заказов.
+     * @param orderQueue Бин очереди, за которым будет наблюдать метрика.
+     * @return {@link MeterBinder} для автоматической регистрации метрики.
+     */
+    @Bean
+    public MeterBinder queueSizeGauge(OrderQueue orderQueue) {
         return registry -> Gauge.builder("pizzeria.queue.size", orderQueue::size)
                 .description("Current number of orders waiting in the queue")
-                .tags("component", "orderQueue") // Теги для лучшей фильтрации
                 .register(registry);
     }
 
     /**
-     * Регистрирует метрику Gauge для отслеживания текущего размера склада пицц.
-     * Использует MeterBinder для чистой регистрации.
-     *
-     * @param warehouse     Бин склада.
-     * @param meterRegistry Реестр метрик.
-     * @return MeterBinder для регистрации метрики.
+     * Регистрирует метрику (Gauge) для отслеживания текущего размера склада.
+     * @param warehouse Бин склада, за которым будет наблюдать метрика.
+     * @return {@link MeterBinder} для автоматической регистрации метрики.
      */
     @Bean
-    public MeterBinder warehouseSizeGauge(Warehouse warehouse, MeterRegistry meterRegistry) {
+    public MeterBinder warehouseSizeGauge(Warehouse warehouse) {
         return registry -> Gauge.builder("pizzeria.warehouse.size", warehouse::size)
                 .description("Current number of pizzas ready in the warehouse")
-                .tags("component", "warehouse") // Теги для лучшей фильтрации
                 .register(registry);
     }
 
-
-    // --- Работники (как списки Runnable) ---
-
     /**
-     * Создает список бинов пекарей (как Runnable).
-     * Зависит от репозитория, очереди и склада.
-     *
-     * @param orderQueue Очередь заказов.
-     * @param warehouse  Склад пицц.
-     * @param repository Репозиторий заказов.
-     * @return Список Runnable пекарей.
+     * Создает и настраивает список пекарей как исполняемых задач (Runnable).
+     * @param orderQueue Очередь, из которой пекари будут брать заказы.
+     * @param warehouse  Склад, на который пекари будут класть готовую пиццу.
+     * @param repository Репозиторий для обновления статусов заказов.
+     * @return Список пекарей, готовых к запуску в отдельных потоках.
      */
     @Bean
     public List<Runnable> bakers(OrderQueue orderQueue,
@@ -124,7 +99,7 @@ public class AppCoreConfig {
                 bakerRunnables.add(new Baker(
                         bakerCfg.id(),
                         bakerCfg,
-                        config, // Передаем весь конфиг (например, для расчета времени)
+                        config,
                         orderQueue,
                         warehouse,
                         repository
@@ -135,12 +110,10 @@ public class AppCoreConfig {
     }
 
     /**
-     * Создает список бинов курьеров (как Runnable).
-     * Зависит от репозитория и склада.
-     *
-     * @param warehouse  Склад пицц.
-     * @param repository Репозиторий заказов.
-     * @return Список Runnable курьеров.
+     * Создает и настраивает список курьеров как исполняемых задач (Runnable).
+     * @param warehouse  Склад, с которого курьеры будут забирать пиццу.
+     * @param repository Репозиторий для обновления статусов заказов.
+     * @return Список курьеров, готовых к запуску в отдельных потоках.
      */
     @Bean
     public List<Runnable> couriers(Warehouse warehouse,
@@ -160,32 +133,18 @@ public class AppCoreConfig {
     }
 
     /**
-     * Собирает всех работников (пекарей и курьеров) в один список Runnable.
-     * Используется для внедрения в WorkerManagerService.
-     *
+     * Собирает всех работников (пекарей и курьеров) в один общий список.
+     * Этот бин будет внедрен в {@code WorkerManagerService} для запуска всех потоков.
      * @param bakers   Список бинов пекарей.
      * @param couriers Список бинов курьеров.
-     * @return Объединенный список всех работников.
+     * @return Объединенный список всех работников ({@code Runnable}).
      */
     @Bean
-    @Qualifier("allWorkers") // Имя объединенного списка для внедрения по квалификатору
+    @Qualifier("allWorkers")
     public List<Runnable> allWorkers(List<Runnable> bakers, List<Runnable> couriers) {
         List<Runnable> all = new ArrayList<>();
-        if (bakers != null) {
-            all.addAll(bakers);
-        }
-        if (couriers != null) {
-            all.addAll(couriers);
-        }
+        all.addAll(bakers);
+        all.addAll(couriers);
         return all;
     }
-
-    // ================================================================================
-    // Компоненты, создаваемые через аннотации (@Repository, @Service, @Component):
-    // - FileOrderRepository (@Repository)
-    // - PizzeriaOrderAcceptorService (@Service)
-    // - WorkerManagerService (@Service)
-    // - ApplicationLifecycleManager (@Component)
-    // ================================================================================
-
 }

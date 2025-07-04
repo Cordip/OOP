@@ -1,7 +1,5 @@
 package org.example.pizzeria.order.service.impl;
 
-// Убрали import jakarta.annotation.PostConstruct;
-// SLF4j imports (предполагаем переход на SLF4j)
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.example.pizzeria.domain.order.Order;
@@ -9,11 +7,9 @@ import org.example.pizzeria.order.service.OrderRepository;
 import org.example.pizzeria.order.service.OrderAcceptor;
 import org.example.pizzeria.processing.queue.OrderQueue;
 import org.springframework.beans.factory.annotation.Autowired;
-// Убрали import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-// Убрали import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Реализация OrderAcceptor, которая помещает заказ в очередь.
@@ -21,18 +17,14 @@ import java.util.Objects;
  * Является Spring-бином (@Service).
  * Использует SLF4j для логирования.
  */
-@Service // Делаем Spring бином
-// Убрали @DependsOn
+@Service
 public class PizzeriaOrderAcceptor implements OrderAcceptor {
 
-    // Статический SLF4j логгер
     private static final Logger log = LoggerFactory.getLogger(PizzeriaOrderAcceptor.class);
 
     private final OrderQueue orderQueue;
     private final OrderRepository repository;
-    // Удалили AtomicInteger lastOrderId
 
-    // Флаг для возможности остановки приема новых заказов
     private volatile boolean acceptingOrders = true;
 
     /**
@@ -45,10 +37,7 @@ public class PizzeriaOrderAcceptor implements OrderAcceptor {
         this.orderQueue = Objects.requireNonNull(orderQueue, "Order queue cannot be null");
         this.repository = Objects.requireNonNull(repository, "Order repository cannot be null");
         log.info("PizzeriaOrderAcceptorService bean created.");
-        // Удалили инициализацию счетчика ID
     }
-
-    // Удалили метод @PostConstruct initializeOrderIdGenerator()
 
     /**
      * Принимает новый заказ и помещает в очередь.
@@ -66,14 +55,12 @@ public class PizzeriaOrderAcceptor implements OrderAcceptor {
         Objects.requireNonNull(order, "Cannot accept a null order");
 
         if (!acceptingOrders) {
-            // Используем ID из заказа для лога
             log.warn("Order acceptor is stopped. Rejecting order {}", order.getId());
             throw new IllegalStateException("Order acceptor is not running or shutting down. Cannot accept new orders.");
         }
 
         try {
-            // Помещаем заказ в очередь
-            orderQueue.put(order); // Может бросить InterruptedException
+            orderQueue.put(order);
             log.info("Order {} accepted and placed in queue. Current queue size: {}", order.getId(), orderQueue.size());
 
         } catch (InterruptedException ie) {
@@ -97,16 +84,12 @@ public class PizzeriaOrderAcceptor implements OrderAcceptor {
      */
     @Override
     public int getNextOrderId() {
-        int nextId = repository.getNextOrderId(); // Просто вызываем метод репозитория
+        int nextId = repository.getNextOrderId();
         log.debug("Retrieved next order ID from repository: {}", nextId);
         return nextId;
     }
 
-    /**
-     * Останавливает прием новых заказов.
-     */
     public void stopAccepting() {
-        // ... (код без изменений) ...
         if (acceptingOrders) {
             this.acceptingOrders = false;
             log.info("Order acceptor stopped accepting new orders.");
@@ -115,11 +98,7 @@ public class PizzeriaOrderAcceptor implements OrderAcceptor {
         }
     }
 
-    /**
-     * Возобновляет прием заказов.
-     */
     public void startAccepting() {
-         // ... (код без изменений) ...
          if (!acceptingOrders) {
              this.acceptingOrders = true;
              log.info("Order acceptor started accepting new orders.");
@@ -128,11 +107,7 @@ public class PizzeriaOrderAcceptor implements OrderAcceptor {
          }
     }
 
-    /**
-     * Проверяет, принимает ли сервис заказы в данный момент.
-     */
     public boolean isAcceptingOrders() {
-        // ... (код без изменений) ...
         return acceptingOrders;
     }
 }

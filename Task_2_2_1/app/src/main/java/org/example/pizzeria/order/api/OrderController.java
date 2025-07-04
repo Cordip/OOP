@@ -30,11 +30,11 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/orders")
-@Validated // Разрешает валидацию параметров методов
+@Validated
 public class OrderController {
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
-    private static final String MDC_ORDER_ID_KEY = "orderId"; // Ключ для MDC
+    private static final String MDC_ORDER_ID_KEY = "orderId";
 
     private final OrderAcceptor orderAcceptor;
     private final OrderRepository orderRepository;
@@ -65,23 +65,22 @@ public class OrderController {
         Integer orderId = null;
         try {
             orderId = orderAcceptor.getNextOrderId();
-            MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId)); // Устанавливаем MDC СРАЗУ после получения ID
+            MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId));
             log.info("Generated new order ID.");
 
             Order newOrder = new Order(orderId, request.pizzaDetails());
-            // Статус RECEIVED будет установлен внутри addOrder
 
             try {
-                orderRepository.addOrder(newOrder); // Внутри addOrder будет лог с MDC
+                orderRepository.addOrder(newOrder);
             } catch (IllegalArgumentException | IllegalStateException e) {
                 log.warn("Failed to add order to repository: {}", e.getMessage());
-                throw e; // Перебрасываем для ControllerAdvice -> 4xx/5xx
+                throw e;
             } catch (Exception e) {
                 log.error("Unexpected error adding order to repository", e);
-                throw new IllegalStateException("Failed to save order state", e); // ControllerAdvice -> 5xx
+                throw new IllegalStateException("Failed to save order state", e);
             }
 
-            orderAcceptor.acceptOrder(newOrder); // Внутри acceptOrder может быть свой лог с MDC
+            orderAcceptor.acceptOrder(newOrder);
 
             CreateOrderResponse response = new CreateOrderResponse(orderId);
             log.info("Order created successfully and placed in queue.");
@@ -89,19 +88,19 @@ public class OrderController {
 
         } catch (InterruptedException e) {
              if (orderId != null) {
-                MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId)); // Убедимся, что MDC установлен для лога ошибки
+                MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId));
              }
              log.warn("Order creation process interrupted.", e);
-             Thread.currentThread().interrupt(); // Восстанавливаем флаг прерывания
+             Thread.currentThread().interrupt();
              throw e;
         } catch (Exception e) {
              if (orderId != null) {
-                MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId)); // Убедимся, что MDC установлен для лога ошибки
+                MDC.put(MDC_ORDER_ID_KEY, String.valueOf(orderId));
              }
-             log.error("Error during order creation process: {}", e.getMessage(), e); // Логгируем ошибку здесь
-             throw e; // Перебрасываем для обработки ControllerAdvice
+             log.error("Error during order creation process: {}", e.getMessage(), e);
+             throw e;
         } finally {
-             MDC.remove(MDC_ORDER_ID_KEY); // Очищаем MDC в любом случае
+             MDC.remove(MDC_ORDER_ID_KEY);
              log.trace("MDC cleared for order creation request.");
         }
     }

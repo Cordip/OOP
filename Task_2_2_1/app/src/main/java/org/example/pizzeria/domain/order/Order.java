@@ -9,11 +9,9 @@ import java.util.Objects;
 
 /**
  * Представляет заказ в пиццерии.
- * Содержит информацию о заказе и его текущем статусе.
- * Изменение статуса выполняется через публичные методы moveToNextStatus/discard,
- * ответственность за логирование лежит на вызывающем коде.
- * Содержит package-private конструктор и метод setStatusInternal для использования
- * ТОЛЬКО классом OrderRecoveryAccessor при восстановлении состояния.
+ * <p>
+ * Этот класс является центральной сущностью домена, отслеживающей жизненный цикл заказа
+ * от его получения до доставки. Класс потокобезопасен.
  */
 public class Order {
 
@@ -21,15 +19,13 @@ public class Order {
 
     private final int id;
     private final String pizzaDetails;
-    private volatile OrderStatus status; // volatile для видимости между потоками
-
-    // --- Конструкторы ---
+    private volatile OrderStatus status; // volatile для видимости изменений между потоками
 
     /**
-     * Публичный конструктор для СОЗДАНИЯ НОВОГО заказа в системе.
-     * Устанавливает начальный статус RECEIVED.
-     * @param id ID нового заказа (должен быть > 0).
-     * @param pizzaDetails Описание пиццы (не null и не пустое).
+     * Создает новый заказ с начальным статусом {@link OrderStatus#RECEIVED}.
+     *
+     * @param id           уникальный идентификатор заказа.
+     * @param pizzaDetails описание пиццы.
      */
     public Order(int id, String pizzaDetails) {
         validateInput(id, pizzaDetails);
@@ -40,14 +36,7 @@ public class Order {
     }
 
     /**
-     * Конструктор для десериализации из JSON (например, при чтении лога).
-     * Используется Jackson или кодом восстановления.
-     * Сделан package-private для контролируемого использования.
-     * Аннотация @JsonCreator указывает Jackson использовать этот конструктор.
-     *
-     * @param id ID заказа из JSON.
-     * @param pizzaDetails Детали из JSON.
-     * @param status Статус из JSON.
+     * Конструктор для десериализации из JSON. Используется Jackson и системой восстановления.
      */
     @JsonCreator
     Order(@JsonProperty("id") int id,
@@ -61,12 +50,12 @@ public class Order {
     }
 
     private void validateInput(int id, String pizzaDetails) {
-         if (id <= 0) {
-             throw new IllegalArgumentException("Order ID must be positive, but was " + id);
-         }
-         if (pizzaDetails == null || pizzaDetails.trim().isEmpty()) {
-             throw new IllegalArgumentException("Pizza details cannot be null or empty for Order ID " + id);
-         }
+        if (id <= 0) {
+            throw new IllegalArgumentException("Order ID must be positive, but was " + id);
+        }
+        if (pizzaDetails == null || pizzaDetails.trim().isEmpty()) {
+            throw new IllegalArgumentException("Pizza details cannot be null or empty for Order ID " + id);
+        }
     }
 
     // --- Геттеры ---
@@ -75,12 +64,12 @@ public class Order {
     public OrderStatus getStatus() { return status; }
 
     /**
-     * Устанавливает статус заказа НАПРЯМУЮ.
-     * Доступен ТОЛЬКО классам в пакете (используется OrderRecoveryAccessor).
-     * НЕ вызывает логирование статуса в репозиторий.
+     * Принудительно устанавливает статус заказа.
+     * <p>
+     * <b>Внимание:</b> Этот метод предназначен только для внутреннего использования
+     * системой восстановления состояния (через {@link OrderRecoveryAccessor}).
      *
-     * @param newStatus Новый статус для установки.
-     * @throws NullPointerException если newStatus == null.
+     * @param newStatus новый статус для установки.
      */
     synchronized void forceSetStatusInternal(OrderStatus newStatus) {
         Objects.requireNonNull(newStatus, "Cannot set null status via internal setter");
@@ -90,22 +79,20 @@ public class Order {
         }
     }
 
-    // --------------------------------------------------------------------
-    // Публичные методы изменения статуса (для Baker/Courier)
-    // --------------------------------------------------------------------
-
     /**
-     * Пытается перевести заказ в следующий логический статус (в памяти).
-     * Ответственность за вызов repository.logStatusUpdate ЛЕЖИТ НА ВЫЗЫВАЮЩЕМ КОДЕ.
-     * Потокобезопасен.
+     * Переводит заказ в следующий логический статус.
+     * <p>
+     * Например, из {@code RECEIVED} в {@code COOKING}. Не выполняет переход
+     * из финальных статусов. Ответственность за персистентное сохранение
+     * нового статуса лежит на вызывающем коде.
      *
-     * @return {@code true} если статус был успешно изменен, {@code false} если переход невозможен.
+     * @return {@code true} если статус был успешно изменен, иначе {@code false}.
      */
     public synchronized boolean moveToNextStatus() {
         OrderStatus currentStatus = this.status;
-        if (currentStatus == null) { // На случай десериализации без статуса
-             log.error("Cannot move order {} from null status!", this.id);
-             return false;
+        if (currentStatus == null) {
+            log.error("Cannot move order {} from null status!", this.id);
+            return false;
         }
 
         OrderStatus nextStatus;
@@ -129,11 +116,11 @@ public class Order {
     }
 
     /**
-     * Пытается перевести заказ в статус DISCARDED (в памяти).
-     * Ответственность за вызов repository.logStatusUpdate ЛЕЖИТ НА ВЫЗЫВАЮЩЕМ КОДЕ.
-     * Потокобезопасен.
+     * Переводит заказ в статус {@link OrderStatus#DISCARDED}.
+     * <p>
+     * Используется для отмены заказа на любом этапе.
      *
-     * @return {@code true} если статус был успешно изменен на DISCARDED, {@code false} если уже был DISCARDED.
+     * @return {@code true} если статус был успешно изменен, иначе {@code false} (если уже был отменен).
      */
     public synchronized boolean discard() {
         if (this.status == OrderStatus.DISCARDED) {

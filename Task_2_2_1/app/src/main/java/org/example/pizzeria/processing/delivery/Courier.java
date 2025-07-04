@@ -28,14 +28,14 @@ import java.util.stream.Collectors;
 public class Courier implements Runnable, Worker {
 
     private static final Logger log = LoggerFactory.getLogger(Courier.class);
-    private static final String MDC_ORDER_ID_KEY = "orderId"; // Ключ для MDC
+    private static final String MDC_ORDER_ID_KEY = "orderId";
 
     private final int id;
     private final PizzeriaConfig.CourierConfig courierConfig;
     private final Warehouse warehouse;
     private final OrderRepository repository;
 
-    private volatile boolean running = true; // Флаг для грациозной остановки
+    private volatile boolean running = true;
 
     public Courier(int id,
                    PizzeriaConfig.CourierConfig courierConfig,
@@ -52,7 +52,7 @@ public class Courier implements Runnable, Worker {
     public void run() {
         log.info("Courier {} run loop started.", id);
         List<Pizza> pizzasInBag = Collections.emptyList();
-        List<Order> ordersInDelivery = new ArrayList<>(); // Заказы, для которых УСПЕШНО залогирован статус DELIVERING
+        List<Order> ordersInDelivery = new ArrayList<>();
 
         try {
             while (running && !Thread.currentThread().isInterrupted()) {
@@ -60,7 +60,7 @@ public class Courier implements Runnable, Worker {
 
                 try {
                     log.debug("Courier {} waiting for pizzas at warehouse (capacity: {})...", id, courierConfig.capacity());
-                    pizzasInBag = warehouse.take(courierConfig.capacity()); // Блокирующий вызов
+                    pizzasInBag = warehouse.take(courierConfig.capacity());
 
                     if (Thread.currentThread().isInterrupted()) {
                         log.warn("Courier {} interrupted after taking pizzas (or during wait).", id);
@@ -83,15 +83,15 @@ public class Courier implements Runnable, Worker {
                     boolean startDeliveryFailed = false;
                     for (Pizza pizza : pizzasInBag) {
                         Order order = null;
-                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(pizza.getOrderId())); // MDC для операций с этим заказом
+                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(pizza.getOrderId()));
                         try {
                             order = repository.getOrderById(pizza.getOrderId());
                             if (order != null) {
                                 if (order.getStatus() == OrderStatus.COOKED) {
-                                    if (order.moveToNextStatus()) { // Переход в DELIVERING
+                                    if (order.moveToNextStatus()) {
                                         try {
                                             repository.logStatusUpdate(order.getId(), order.getStatus());
-                                            ordersInDelivery.add(order); // Добавляем только если статус успешно залогирован
+                                            ordersInDelivery.add(order);
                                             log.info("Status logged as DELIVERING.");
                                         } catch (Exception logEx) {
                                             log.error("Courier {} FAILED to log status DELIVERING. Order removed from this delivery.", id, logEx);
@@ -135,13 +135,13 @@ public class Courier implements Runnable, Worker {
                             .collect(Collectors.joining(", "));
                     log.info("Courier {} started delivering {} orders ({}). Estimated time: {}ms", id, ordersInDelivery.size(), deliveringOrderIds, deliveryTime);
 
-                    TimeUnit.MILLISECONDS.sleep(deliveryTime); // Может бросить InterruptedException
+                    TimeUnit.MILLISECONDS.sleep(deliveryTime);
 
                     log.info("Courier {} finished delivery trip for orders ({}).", id, deliveringOrderIds);
                     for (Order deliveredOrder : ordersInDelivery) {
-                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(deliveredOrder.getId())); // MDC для завершения этого заказа
+                        MDC.put(MDC_ORDER_ID_KEY, String.valueOf(deliveredOrder.getId()));
                         try {
-                             if (deliveredOrder.moveToNextStatus()) { // Переход в DELIVERED
+                             if (deliveredOrder.moveToNextStatus()) {
                                 try {
                                     repository.logStatusUpdate(deliveredOrder.getId(), deliveredOrder.getStatus());
                                     log.info("Status logged as DELIVERED.");
@@ -184,14 +184,14 @@ public class Courier implements Runnable, Worker {
                     }
                      try { TimeUnit.SECONDS.sleep(1); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); running = false; }
                 } finally {
-                    MDC.clear(); // Гарантированно очищаем MDC
+                    MDC.clear();
                     pizzasInBag = Collections.emptyList();
                     ordersInDelivery.clear();
                 }
             }
         } finally {
             log.info("Courier {} run loop finished.", id);
-            MDC.clear(); // Очистка MDC при завершении потока
+            MDC.clear();
         }
     }
 
@@ -215,7 +215,7 @@ public class Courier implements Runnable, Worker {
                      handleDiscard(order);
                  } else {
                      log.error("Courier {} could not find order to discard it (based on pizza in bag).", id);
-                     try { // Пытаемся залогировать отмену по ID напрямую
+                     try {
                          repository.logStatusUpdate(pizza.getOrderId(), OrderStatus.DISCARDED);
                          log.info("Status logged as DISCARDED by ID.");
                      } catch (Exception logEx) {

@@ -9,48 +9,59 @@ import java.util.List;
 
 /**
  * Конфигурация пиццерии, загружаемая из application.properties с префиксом "pizzeria".
- * Используется record для неизменяемости и валидации Jakarta Bean Validation.
+ * Используется для определения всех операционных параметров симуляции.
+ *
+ * @param workTimeMs Время работы симуляции в миллисекундах.
+ * @param orderQueueCapacity Вместимость очереди заказов.
+ * @param warehouseCapacity Вместимость склада готовых пицц.
+ * @param logFilePath Устаревший путь к файлу лога.
+ * @param repositoryLogPath Путь к файлу репозитория заказов для хранения состояния.
+ * @param ingredientCookingMultiplierMs Множитель времени готовки за единицу сложности пиццы.
+ * @param baselineAverageCookTimeMs Базовое время для расчета мастерства пекарей.
+ * @param bakers Список конфигураций пекарей.
+ * @param couriers Список конфигураций курьеров.
  */
 @ConfigurationProperties(prefix = "pizzeria")
 @Validated // Включает валидацию полей, аннотированных JSR-303/Jakarta Validation
 public record PizzeriaConfig(
 
         @Min(value = 1000, message = "Work time must be at least 1000 ms")
-        long workTimeMs, // Время работы симуляции
+        long workTimeMs,
 
         @Positive(message = "Order queue capacity must be positive")
-        int orderQueueCapacity, // Вместимость очереди заказов
+        int orderQueueCapacity,
 
         @Positive(message = "Warehouse capacity must be positive")
-        int warehouseCapacity, // Вместимость склада
+        int warehouseCapacity,
 
-        // Поле loggerType УДАЛЕНО
-
-        String logFilePath, // Путь к файлу лога старой системы (не используется активно)
+        String logFilePath,
 
         @NotBlank(message = "Repository log path cannot be blank")
-        String repositoryLogPath, // Путь к файлу репозитория заказов
+        String repositoryLogPath,
 
         @PositiveOrZero(message = "Ingredient cooking multiplier must be non-negative")
-        int ingredientCookingMultiplierMs, // Множитель времени готовки
+        int ingredientCookingMultiplierMs,
 
         @PositiveOrZero(message = "Baseline average cook time must be non-negative")
-        int baselineAverageCookTimeMs, // Базовое время для расчета мастерства
+        int baselineAverageCookTimeMs,
 
         @NotEmpty(message = "Bakers list cannot be empty")
         @Valid // Включает валидацию для элементов списка BakerConfig
-        List<BakerConfig> bakers, // Список пекарей
+        List<BakerConfig> bakers,
 
         @NotEmpty(message = "Couriers list cannot be empty")
         @Valid // Включает валидацию для элементов списка CourierConfig
-        List<CourierConfig> couriers // Список курьеров
-
-        // TODO: Добавить сюда конфигурацию ротации, если нужно:
-        // RepositoryLogRotationConfig repositoryLogRotation
+        List<CourierConfig> couriers
 
 ) {
 
-    // Вложенные классы для конфигурации работников
+    /**
+     * Конфигурация для одного пекаря.
+     *
+     * @param id Уникальный идентификатор пекаря.
+     * @param cookTimeMinMs Минимальное время приготовления (мс).
+     * @param cookTimeMaxMs Максимальное время приготовления (мс).
+     */
     public record BakerConfig(
             @Positive(message = "Baker ID must be positive") int id,
             @Positive(message = "Baker minimum cook time must be positive") int cookTimeMinMs,
@@ -65,6 +76,14 @@ public record PizzeriaConfig(
         public double getAverageBaseTime() { return (cookTimeMinMs + cookTimeMaxMs) / 2.0; }
     }
 
+    /**
+     * Конфигурация для одного курьера.
+     *
+     * @param id Уникальный идентификатор курьера.
+     * @param capacity Вместимость багажника курьера (кол-во пицц).
+     * @param deliveryTimeMinMs Минимальное время доставки (мс).
+     * @param deliveryTimeMaxMs Максимальное время доставки (мс).
+     */
     public record CourierConfig(
             @Positive(message = "Courier ID must be positive") int id,
             @Positive(message = "Courier capacity must be positive") int capacity,
@@ -78,12 +97,4 @@ public record PizzeriaConfig(
             }
         }
     }
-
-    // TODO: Добавить record для конфигурации ротации, если нужно
-    /*
-    public record RepositoryLogRotationConfig(
-        boolean enabled,
-        @Positive int maxSizeMb
-    ) {}
-    */
 }

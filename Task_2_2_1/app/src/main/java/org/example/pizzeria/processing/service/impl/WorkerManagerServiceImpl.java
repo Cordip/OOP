@@ -22,10 +22,10 @@ import java.util.List;
 public class WorkerManagerServiceImpl implements WorkerManagerService {
 
     private static final Logger log = LoggerFactory.getLogger(WorkerManagerServiceImpl.class);
-    private static final long WORKER_JOIN_TIMEOUT_MS = 2000; // Таймаут ожидания завершения потока
+    private static final long WORKER_JOIN_TIMEOUT_MS = 2000;
 
-    private final List<Runnable> workers; // Список всех работников (Runnable)
-    private final List<Thread> workerThreads = new ArrayList<>(); // Список запущенных потоков
+    private final List<Runnable> workers;
+    private final List<Thread> workerThreads = new ArrayList<>();
 
     /**
      * Конструктор для внедрения списка всех работников.
@@ -47,12 +47,11 @@ public class WorkerManagerServiceImpl implements WorkerManagerService {
             return;
         }
 
-        synchronized (workerThreads) { // Синхронизируем доступ к списку потоков
-             workerThreads.clear(); // Очищаем на случай перезапуска контекста
+        synchronized (workerThreads) {
+             workerThreads.clear();
              for (Runnable worker : workers) {
                  String threadName = generateThreadName(worker);
                  Thread thread = new Thread(worker, threadName);
-                 // thread.setDaemon(true); // Потоки-демоны не будут блокировать завершение JVM
                  workerThreads.add(thread);
                  thread.start();
                  log.info("Started thread: {}", threadName);
@@ -79,7 +78,7 @@ public class WorkerManagerServiceImpl implements WorkerManagerService {
     public void stopWorkers() {
         log.info("Stopping all worker threads...");
         List<Thread> threadsToStop;
-        synchronized (workerThreads) { // Копируем список под блокировкой
+        synchronized (workerThreads) {
              threadsToStop = new ArrayList<>(workerThreads);
         }
 
@@ -89,7 +88,7 @@ public class WorkerManagerServiceImpl implements WorkerManagerService {
         }
 
         log.info("Interrupting {} worker threads...", threadsToStop.size());
-        for (Thread thread : threadsToStop) { // Прерываем все потоки
+        for (Thread thread : threadsToStop) {
             if (thread != null && thread.isAlive()) {
                  log.debug("Interrupting thread: {}", thread.getName());
                  thread.interrupt();
@@ -98,7 +97,7 @@ public class WorkerManagerServiceImpl implements WorkerManagerService {
         log.info("Interrupt signals sent to all workers.");
 
         log.info("Waiting for worker threads to join (timeout: {}ms)...", WORKER_JOIN_TIMEOUT_MS);
-        for (Thread thread : threadsToStop) { // Ждем завершения каждого потока
+        for (Thread thread : threadsToStop) {
              if (thread == null) continue;
              try {
                  thread.join(WORKER_JOIN_TIMEOUT_MS);
@@ -109,14 +108,14 @@ public class WorkerManagerServiceImpl implements WorkerManagerService {
                  }
              } catch (InterruptedException e) {
                   log.warn("Interrupted while waiting for worker thread {} to join.", thread.getName());
-                  Thread.currentThread().interrupt(); // Восстанавливаем флаг прерывания
+                  Thread.currentThread().interrupt();
              } catch (Exception e) {
                   log.error("Error joining worker thread {}", thread.getName(), e);
              }
         }
         log.info("Finished stopping worker threads.");
          synchronized (workerThreads) {
-             workerThreads.clear(); // Очищаем список после остановки
+             workerThreads.clear();
          }
     }
 
