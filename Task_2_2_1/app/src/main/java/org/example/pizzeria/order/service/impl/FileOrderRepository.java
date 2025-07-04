@@ -31,7 +31,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Реализация репозитория заказов {@link OrderRepository} на основе файла.
@@ -79,7 +78,8 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
     private boolean closed = false;
     private final Object stateLock = new Object();
     private volatile boolean isLoading = false;
-    private final AtomicInteger nextId = new AtomicInteger(1);
+    private int nextIdValue = 1;
+    private final Object idLock = new Object();
 
     private final Counter addOrderCounter;
     private final Counter logStatusUpdateCounter;
@@ -122,7 +122,11 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
             rotateLogFileIfNeeded();
             loadFromLog();
             openLogWriter();
-            log.info("FileOrderRepository @PostConstruct: Initialization complete. Next order ID: {}", nextId.get());
+            int tmpIdValue;
+            synchronized(idLock) {
+                tmpIdValue = nextIdValue;
+            }
+            log.info("FileOrderRepository @PostConstruct: Initialization complete. Next order ID: {}", tmpIdValue);
         } catch (IOException e) {
             log.error("FATAL: Failed to initialize FileOrderRepository due to IO error", e);
             throw new UncheckedIOException("Failed to initialize FileOrderRepository", e);
@@ -191,7 +195,9 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
         if (!Files.exists(logFilePath)) {
              synchronized (stateLock) { this.isLoading = false; }
              log.info("Log file does not exist. Starting with empty state.");
-             nextId.set(1);
+             synchronized(idLock) {
+                nextIdValue = 1;
+            }
              log.info("Finished state loading process (isLoading = false).");
             return;
         }
@@ -288,15 +294,18 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
 
         } catch (IOException e) {
             log.error("Critical I/O error occurred while reading log file: {}. State might be incomplete.", logFilePath, e);
-            if (maxIdFound == 0) nextId.set(1); else nextId.set(maxIdFound + 1);
         } finally {
-            nextId.set(maxIdFound + 1);
+            int finalNextId;
+            synchronized(idLock) {
+                nextIdValue = maxIdFound + 1;
+                finalNextId = nextIdValue;
+            }
             synchronized (stateLock) {
                 this.isLoading = false;
             }
             long endTime = System.currentTimeMillis();
             log.info("Finished state loading process (isLoading = false). Processed {} lines. Next order ID set to {}. Total time: {} ms.",
-                    linesProcessed, nextId.get(), (endTime - startTime));
+                linesProcessed, finalNextId, (endTime - startTime));
         }
     }
 
@@ -480,7 +489,9 @@ public class FileOrderRepository implements OrderRepository, AutoCloseable {
 
     @Override
     public int getNextOrderId() {
-        return nextId.getAndIncrement();
+        synchronized (idLock) {
+            return nextIdValue++;
+        }
     }
 
     /**
